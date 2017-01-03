@@ -98,6 +98,36 @@ $products_list .= <<<EOT
 	<div>Preço : {$currency} {$row["product_price"]}<div>
 		<div class="item-box">
 			<div>
+				Qtde :
+				<select name="product_qty">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+			</div>
+
+			<input name="product_code" type="hidden" value="{$row["product_code"]}">
+			<input name="product_image" type="hidden" value="{$row["product_image"]}" >
+			<button type="submit">Adicionar ao Carrinho</button>
+		</div>
+	</form>
+</li>
+EOT;
+/*$products_list .= <<<EOT
+<li>
+<form class="form-item">
+	<h4>{$row["product_name"]}</h4>
+	<div><img src="images/{$row["product_image"]}"></div>
+	<div>Preço : {$currency} {$row["product_price"]}<div>
+		<div class="item-box">
+			<div>
 				Cor :
 				<select name="product_color">
 					<option value="Red">Red</option>
@@ -132,7 +162,7 @@ $products_list .= <<<EOT
 		</div>
 	</form>
 </li>
-EOT;
+EOT;*/
 	}
 		$products_list .= '</ul></div>';
 		echo $products_list;

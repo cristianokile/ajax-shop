@@ -19,21 +19,22 @@
 			$cart_box 		= '<ul class="view-cart">';
 
 			foreach($_SESSION["products"] as $product){ //Print each item, quantity and price.
-				$product_id 	= $product["id"];
 				$product_image 	= $product["product_image"];
 				$product_name 	= $product["product_name"];
 				$product_qty 	= $product["product_qty"];
 				$product_price 	= $product["product_price"];
 				$product_code 	= $product["product_code"];
-				$product_color 	= $product["product_color"];
-				$product_size 	= $product["product_size"];
+				//$product_color 	= $product["product_color"];
+				//$product_size 	= $product["product_size"];
 				
 				$item_price 	= sprintf("%01.2f",($product_price * $product_qty));  // price x qty = total item price
 				
+				// $cart_box 		.=  "
+				// <li><a class='btn' href='produto.php?id=$product_id' role='button' title='Ver produto'>
+				// <img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_code &ndash;  $product_name (Qtde : $product_qty | $product_color | $product_size) </a><span> $currency. $item_price </span></li>";
 				$cart_box 		.=  "
-				<li> 
-					<a class='btn' href='produto.php?id=$product_id' role='button' title='Ver produto'>
-					<img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_code &ndash;  $product_name (Qtde : $product_qty | $product_color | $product_size) </a><span> $currency. $item_price </span></li>";
+				<li><img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_code &ndash;  $product_name (Qtde : $product_qty )<span> $currency. $item_price </span></li>";
+
 				
 				$subtotal 		= ($product_price * $product_qty); //Multiply item quantity * price
 				$total 			= ($total + $subtotal); //Add up to total price

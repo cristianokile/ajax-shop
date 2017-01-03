@@ -24,7 +24,7 @@
 						data: form_data
 					}).done(function(data){ //on Ajax success
 						$("#cart-info").html(data.items); //total items in cart-info element
-						button_content.html('Add to Cart'); //reset button text to original text
+						button_content.html('Adicionar ao Carrinho'); //reset button text to original text
 						//alert("Adicionado ao carrinho!"); //alert user
 						if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
 							$(".cart-box").trigger( "click" ); //trigger click to update the cart box.
@@ -88,6 +88,54 @@
 			$products_list =  '<ul class="products-wrp">';
 
 			while($row = $results->fetch_assoc()) {
+// $products_list .= <<<EOT
+// <li>
+// <form class="form-item">
+// 	<h4>{$row["product_name"]}</h4>
+// 	<div>
+// 		<a class="btn" href="produto.php?id={$row["id"]}" role="button" title="Ver produto">
+// 			<img src="images/{$row["product_image"]}">
+// 		</a>
+// 	</div>
+// 	<div>Preço : {$currency} {$row["product_price"]}<div>
+// 		<div class="item-box">
+// 			// <div>
+// 			// 	Cor :
+// 			// 	<select name="product_color">
+// 			// 		<option value="Red">Red</option>
+// 			// 		<option value="Blue">Blue</option>
+// 			// 		<option value="Orange">Orange</option>
+// 			// 	</select>
+// 			// </div>
+
+// 			<div>
+// 				Qtde :
+// 				<select name="product_qty">
+// 					<option value="1">1</option>
+// 					<option value="2">2</option>
+// 					<option value="3">3</option>
+// 					<option value="4">4</option>
+// 					<option value="5">5</option>
+// 				</select>
+// 			</div>
+
+// 			// <div>
+// 			// 	Tamanho :
+// 			// 	<select name="product_size">
+// 			// 		<option value="M">M</option>
+// 			// 		<option value="XL">XL</option>
+// 			// 		<option value="XXL">XLL</option>
+// 			// 	</select>
+// 			// </div>
+
+// 			<input name="product_code" type="hidden" value="{$row["product_code"]}">
+// 			<input name="product_image" type="hidden" value="{$row["product_image"]}" >
+// 			<input name="product_id" type="hidden" value="{$row["id"]}" >
+// 			<button type="submit">Adicionar ao Carrinho</button>
+// 		</div>
+// 	</form>
+// </li>
+// EOT;
 $products_list .= <<<EOT
 <li>
 <form class="form-item">
@@ -100,15 +148,6 @@ $products_list .= <<<EOT
 	<div>Preço : {$currency} {$row["product_price"]}<div>
 		<div class="item-box">
 			<div>
-				Cor :
-				<select name="product_color">
-					<option value="Red">Red</option>
-					<option value="Blue">Blue</option>
-					<option value="Orange">Orange</option>
-				</select>
-			</div>
-
-			<div>
 				Qtde :
 				<select name="product_qty">
 					<option value="1">1</option>
@@ -116,15 +155,6 @@ $products_list .= <<<EOT
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
-				</select>
-			</div>
-
-			<div>
-				Tamanho :
-				<select name="product_size">
-					<option value="M">M</option>
-					<option value="XL">XL</option>
-					<option value="XXL">XLL</option>
 				</select>
 			</div>
 

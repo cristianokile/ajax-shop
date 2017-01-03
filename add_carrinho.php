@@ -44,10 +44,11 @@
 				$product_price 		= $product["product_price"];
 				$product_code 		= $product["product_code"];
 				$product_qty 		= $product["product_qty"];
-				$product_color 		= $product["product_color"];
-				$product_size 		= $product["product_size"];
+				//$product_color 		= $product["product_color"];
+				//$product_size 		= $product["product_size"];
 				
-				$cart_box .=  "<li> <img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_name (Qty : $product_qty | $product_color  | $product_size ) &mdash; $currency ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
+				// $cart_box .=  "<li> <img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_name (Qty : $product_qty | $product_color  | $product_size ) &mdash; $currency ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
+				$cart_box .=  "<li> <img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_name (Qty : $product_qty ) &mdash; $currency ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
 				$subtotal = ($product_price * $product_qty);
 				$total = ($total + $subtotal);
 			}
