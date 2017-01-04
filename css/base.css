@@ -1,0 +1,38 @@
+/*
+ Theme Name:   RBC Global Business
+ Theme URI:    http://www.rbcglobal.com.br
+ Description:  Novo layout para o site RBC Global Business
+ Author:       Equipe Chiapa Design - Rodrigo, Mariana e Cristiano
+ Author URI:   http://www.chiapadesign.com.br
+ Template:     chiapa_v2
+ Version:      2.0
+
+*/
+/************************************************************************************/
+a{
+	/*color: #ffffff;*/
+	text-decoration: none;
+}
+html{
+	font-size: 12px;
+	box-sizing: border-box;
+}
+p {
+    margin: 0 0 20px;
+}
+html,
+body {
+    height: 100%;
+}
+.btn-default{
+	transition: all 0.5s ease;
+} 
+.btn-default:hover {
+    color: #FFFFFF;
+    background-color: #ef494f;
+    border-color: #ffffff;
+    text-shadow: none;
+}
+.clearfix{
+	clear: both;
+}

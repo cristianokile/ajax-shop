@@ -1,7 +1,7 @@
 <?php
 	session_start(); //start session
 	include_once("controller/config.inc.php"); //include config file
-	setlocale(LC_MONETARY,"pt_BR"); // US national format (see : http://php.net/money_format)
+	setlocale(LC_MONETARY,"pt_BR"); 
 ?>
 
 <?php

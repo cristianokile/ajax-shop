@@ -17,8 +17,8 @@
 					var button_content = $(this).find('button[type=submit]');
 					button_content.html('Adicionando...'); //Loading button text 
 
-					$.ajax({ //make ajax request to add_carrinho.php
-						url: "add_carrinho.php",
+					$.ajax({ //make ajax request to carrinho_add.php
+						url: "carrinho_add.php",
 						type: "POST",
 						dataType:"json", //expect json value from server
 						data: form_data
@@ -38,7 +38,7 @@
 					e.preventDefault(); 
 					$(".shopping-cart-box").fadeIn(); //display cart box
 					$("#shopping-cart-results").html('<img src="images/ajax-loader.gif">'); //show loading image
-					$("#shopping-cart-results" ).load( "add_carrinho.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+					$("#shopping-cart-results" ).load( "carrinho_add.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
 				});
 		
 				//Close Cart
@@ -52,7 +52,7 @@
 					e.preventDefault(); 
 					var pcode = $(this).attr("data-code"); //get product code
 					$(this).parent().fadeOut(); //remove item element from box
-					$.getJSON( "add_carrinho.php", {"remove_code":pcode} , function(data){ //get Item count from Server
+					$.getJSON( "carrinho_add.php", {"remove_code":pcode} , function(data){ //get Item count from Server
 						$("#cart-info").html(data.items); //update Item count in cart-info
 						$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
 					});

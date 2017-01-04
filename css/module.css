@@ -1,0 +1,329 @@
+/* BREADCRUMBS */
+section.breadcrumb {
+    padding: 20px 15px;
+    margin: 40px 0;
+    list-style: none;
+    background-color: #ffffff;
+    border-radius: 0;
+}
+section.breadcrumb:after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 15px;
+    background: #8b8d99;
+    margin: 20px auto;
+}
+section.breadcrumb a,
+section.breadcrumb span {
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    color: #8b8d99;
+    text-transform: uppercase;
+    display: inline-block; margin: 0 5px;
+}
+section.breadcrumb span.active{
+    color: #ef494f;
+}
+
+/* Destaque Produtos */
+
+/* SIDEBARS */
+section.destaque-produtos{
+    min-height: 400px;
+    position: relative;
+}
+
+div.produtos-linha-descricao{
+    background: #e56a56;
+    padding: 40px 30px;
+}
+div.produtos-linha-descricao .box-width{
+    width: 80%;
+}
+div.produtos-linha-imagem{
+    position: relative;
+}
+div.produtos-linha-descricao small{
+    font-family: 'Poppins-Regular';
+    letter-spacing: 2px;
+    font-size: .85em;
+    color: #fff;
+}
+div.produtos-linha-descricao h2{
+    letter-spacing: 1px;
+    font-size: 3em;
+    margin-top: 10px;
+    color: #fff;
+}
+div.produtos-linha-descricao p{
+    letter-spacing: 2px;
+    font-size: .8em;
+    color: #fff;
+}
+div.produtos-linha-descricao .btn{
+    border: 1px solid #fff;
+    border-radius: 0;
+    font-family: 'Poppins-Light';
+    font-size: .7em;
+    padding: 10px 15px;
+    color: #fff;
+    transition: background 200ms, color 200ms, font-weight 200ms;
+}
+div.produtos-linha-descricao .btn:hover{
+    background: #fff;
+    color: #e56a56;
+    font-weight: bold;
+}
+
+/* Carousel Slider */
+div.carousel-inner div.item h4,{
+    font-family: "Poppins-Light";
+}
+div.carousel-inner div.item h5,
+section.produtos h2{
+    font-family: "AbrilFatface-Regular";
+}
+section.produtos article a.btn,
+section.produtos article h4{
+    font-family: 'Poppins-Regular';
+}
+
+section.carousel-slider{
+	min-height: 600px;
+}
+.carousel-control.left,
+.carousel-control.right{
+	background: none;
+}
+div.carousel-inner div.item h4{
+	color: #fff;
+	font-size: 22px;
+	opacity: .7;
+	text-transform: uppercase;
+	text-shadow: none;
+	letter-spacing: 3px;
+}
+div.carousel-inner div.item h5{
+	color: #fff;
+	font-size: 8em;
+	font-size: 12rem;
+	opacity: .6;
+	text-shadow: none;
+	line-height: 80%;
+}
+
+/* LISTA PRODUTOS */
+
+section.produtos,
+section.carrinho h2{
+    margin-top: 50px; 
+    margin-bottom: 50px; 
+}
+section.produtos h2, 
+section.carrinho h2 {
+    text-align: center; 
+    font-size: 34px;
+    color: #ef494f;
+    margin-top: 60px;
+}
+section.produtos h2:after,
+section.carrinho h2:after{
+    content: "";
+    display: block;
+    height: 1px; 
+    width: 20px;
+    background: #ef494f;
+    margin: 10px auto;
+}
+section.produtos article{
+    text-align: center;
+    margin: 25px 0;  
+    min-height: 300px;  
+}
+section.produtos article div.produto-imagem{ 
+    width: 100%;
+    min-height: 300px;  
+    position: relative;
+}
+section.produtos article div.produto-imagem img{ 
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+section.produtos article h3{
+     font-family: 'Poppins-Bold';
+     font-size: 1.4em;
+     color: #ef494f;
+}
+section.produtos article h4{
+     font-size: 1.2em;
+     color: #8b8d99;
+}
+section.produtos article h5{
+     font-family: 'Poppins-SemiBold';
+     font-size: 1.1em;
+     color: #8b8d99;
+}
+section.produtos article a.btn,
+section.produtos article button.btn{
+     font-size: .8em;
+     letter-spacing: 1px;
+     color: #ef494f;
+     border: 1px solid #ef494f;
+     padding: 15px 20px;
+     border-radius: 0;
+     line-height: 100%;
+     margin-top: 5px;
+     transition: background 400ms, color 400ms;
+     background: none;
+     text-transform: uppercase;
+}
+section.produtos article a.btn:hover,
+section.produtos article button.btn:hover{
+     background:#ef494f;
+     color: #ffffff;
+} 
+
+/* PÁGINA PRODUTOS */
+
+section.produto{
+    margin-bottom: 60px;
+} 
+section.produto h2{
+    font-family: 'Poppins-Bold';
+    font-size: 1em;
+    color: #8b8d99;
+}
+section.produto h3{
+    font-family: 'AbrilFatface-Regular';
+    font-size: 3em;
+    color: #ef494f;
+}
+section.produto h4{
+    font-family: 'Poppins-Regular';
+    font-size: 1em;
+    color: #8b8d99; 
+}
+section.produto h5{
+    font-family: 'Poppins-Regular';
+    font-size: 1em;
+    color: #8b8d99;
+}
+section.produto h5 strong{
+    color: #ef494f;
+}
+section.produto article a.btn,
+a.btn-padrao,
+input.btn{
+     font-size: .8em;
+     letter-spacing: 1px;
+     color: #ef494f;
+     border: 1px solid #ef494f;
+     padding: 15px 20px;
+     border-radius: 0;
+     line-height: 100%;
+     margin: 20px 0;
+     background: none;
+     transition: background 400ms, color 400ms;
+}
+section.produto article a.btn:hover,
+input.btn:hover{
+     background:#ef494f;
+     color: #ffffff;
+}
+ul.lista-carrinho{
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+ul.lista-carrinho li.lista-header{
+    background: #ef494f;
+    padding: 10px 0;
+    color: #FFFFFF;
+}
+ul.lista-carrinho li.lista-body{
+    padding: 15px 0;
+}
+ul.lista-carrinho li.lista-body div.out{
+    display: table;
+    height: 100px;
+}
+ul.lista-carrinho li.lista-body div.in{
+    display: table-cell;
+    vertical-align: middle;
+    align-content: center;
+}
+ul.lista-carrinho li.lista-body img{
+    max-height: 100px;
+    max-width: 100px; 
+}
+ul.lista-carrinho li.lista-body:nth-child(odd) {
+   background-color: #eee;
+}
+ul.lista-carrinho li.lista-body p{
+    margin: 0;
+}
+ul.lista-carrinho li.lista-body p strong{
+    font-weight: bold;
+}
+ul.lista-carrinho li.lista-body a p{
+    color: #ef494f;
+    font-weight: bold;
+}
+ul.lista-carrinho li.lista-body a:hover{
+    text-decoration: none;
+}
+ul.lista-carrinho li.lista-body a:hover p{
+    color: red;
+}
+.quantity-remove, .quantity-add {
+    cursor: pointer;
+}
+.quantity-add.glyphicon, .quantity-remove.glyphicon {
+    display: block;
+    cursor: pointer;
+}
+.form-group-options{
+    max-width: 130px;
+    margin-bottom: 0;
+}
+.btn-remove{
+    color: #ef494f;
+    transition: all 0.5s ease;
+}
+.btn-remove:hover{
+    background: #ef494f;
+    color: #fff;
+}
+.form-control:focus {
+    border-color: #ef494f;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+@media screen and (max-width: 776px){
+    ul.lista-carrinho li.lista-body div.out{
+        display: table;
+        height: 140px;
+    }    
+    ul.lista-carrinho li.lista-body img{
+        max-height: 140px;
+        max-width: 100px; 
+    }
+    .form-group-options{
+        margin-top: 10px;
+    }
+    .btn-remove {
+        margin-top: 5px;
+        width: 85%;
+    }
+}
+
+

@@ -1,0 +1,285 @@
+
+/*-----------------------*/
+/*     MEDIA QUERIES     */
+/*-----------------------*/
+
+/* -- BETWEEN -- */
+
+/* XXS - Resolução de 0 até 480px */
+@media screen and (max-width: 480px){
+	.text-center-xxs{
+		text-align: center;	
+	}
+    section.quem-somos h2 {
+    	font-size: 4.2em;
+	}
+}
+/* XS - Resolução de 481px até 768px */
+@media screen and (min-width: 481px) and (max-width: 768px){
+    
+}
+/* SM - Resolução de 769px até 992px */
+@media screen and (min-width: 769px) and (max-width: 992px){
+	header.header-main .carousel-caption {
+        bottom: 17%;
+    }
+    ul.navbar-nav-main >li {
+        min-height: 130px;
+        display: table;
+    }
+    h1.h1-logo a.navbar-brand {
+        margin: 25px auto!important;
+    }
+    div.carousel-inner div.item h5 {
+        font-size: 7.8em;
+    }
+    div.produtos-linha-descricao {
+        min-height: 300px;
+    }
+    div.produtos-linha-descricao .box-width {
+        width: 80%;
+        display: table-cell;
+    }
+    .call-to-action p {
+        margin: 23px auto;
+    }
+    .footer-menu img{
+        margin: auto;
+        margin-bottom: 50px;
+    } 
+    .footer-menu img {
+        margin-bottom: 40px!important;
+    }
+    div.imagem-right{
+        margin: 74px 0;
+    }
+}
+/* MD - Resolução de 993px até 1200px */
+@media screen and (min-width: 993px) and (max-width: 1200px){
+    .call-to-action p {
+	    margin: 17px auto;
+	}
+}
+/* LG - Resolução de 1201px até 1599px */
+@media screen and (min-width: 1201px) and (max-width: 1599){
+
+}
+/* XL - Resolução acima de 1600px */
+@media screen and (min-width: 1600px){
+
+}
+
+/* -- LESS THAN -- */
+
+/* XS - Resolução até 768px */
+@media screen and (max-width: 767px){
+	.text-center-xs{
+		text-align: center;	
+	}
+    .text-left-xs{
+        text-align: left;
+    }
+    h1.h1-logo a {
+        background-image: url(../img/rbc-global-business-mobile.png);
+        -webkit-background-size: 100%;
+        background-size: 100%;
+        height: 70px;
+        width: 200px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        color: #444;
+        line-height: 1.3em;
+        margin: 10px;
+        padding: 0;
+        text-decoration: none;
+        text-indent: -9999px;
+        outline: 0;
+        display: block;
+    }
+    header.header-main .carousel-caption {
+        bottom: 15%;
+    }
+	.dropdown-menu-large {
+		margin-left: 0 ;
+		margin-right: 0 ;
+	}
+	.dropdown-menu-large > li {
+		margin-bottom: 30px;
+	}
+	.dropdown-menu-large > li:last-child {
+		margin-bottom: 0;
+	}
+	.dropdown-menu-large .dropdown-header {
+		padding: 3px 15px !important;
+	}
+    div.produtos-linha-descricao .box-width {
+        width: 100%;
+    }
+	.call-to-action p {
+    	margin: 5px 0 20px 0;
+    }
+    div.carousel-inner div.item h5 {
+        font-size: 3em;
+    }
+    .footer-menu img{
+        margin-bottom: 0px;
+    } 
+}
+/* SM - Resolução até 992px */
+@media screen and (max-width: 991px){
+	.text-center-sm{
+		text-align: center;	
+	}
+    article.produtos-linha .no-gutter{
+        background: #e56a56;      
+    }
+    div.produtos-linha-imagem img{
+        margin: auto;      
+    }	
+	.call-to-action h2{
+        margin: 12px auto 0px auto;
+    }
+    section.quem-somos {
+        margin-top: 15px!important;
+        background: none;
+    }
+    .footer-menu img {
+    	margin: auto;
+	}
+	footer .footer-menu {
+	    padding-top: 45px;
+	    padding-bottom: 45px;
+    }
+}
+/* MD - Resolução até 1200px */
+@media screen and (max-width: 1199px){
+	.text-center-md{
+		text-align: center;	
+	}
+}
+/* LG - Resolução até 1599px */
+@media screen and (max-width: 1599px){
+	
+}
+
+/* -- GREATHER THAN -- */
+/* XXS - Resolução a partir de 481px */
+@media screen and (min-width: 481px){
+    .navbar-custom .navbar-nav-main>li>a {
+        font-size: 1em;
+    }
+
+}
+/* XS - Resolução a partir de 769px */
+@media screen and (min-width: 769px){
+    h1.h1-logo a.navbar-brand {
+        background-image: url(../img/rbc-global-business.png);
+        -webkit-background-size: 100%;
+        background-size: 100%;
+        height: 80px;
+        width: 200px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        color: #444;
+        font-size: 20px;
+        line-height: 1.3em;
+        margin: 55px auto;
+        padding: 0;
+        text-decoration: none;
+        text-indent: -9999px;
+        outline: 0;
+        display: block;
+    }
+    nav.navbar-custom{
+        position: absolute!important;
+        z-index: 9999;
+        width: 100%;
+        top: 0;
+        min-height: 130px;
+        background: none;
+        border: none;
+        box-shadow: none;
+        font-family: "Poppins-Light";
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin: auto;
+    }
+    .navbar>.container .navbar-brand,
+    .navbar>.container-fluid .navbar-brand {
+        margin-left: 0px;
+    }
+    ul.navbar-nav-main >li{
+        display: table;
+    }
+    ul.navbar-nav-main > li a{
+        display: table-cell;
+        align-content: center;
+        vertical-align: middle;
+        color: #fff;
+    }
+    ul.navbar-nav-main > li a:hover {
+        color: #ffffff;
+    }
+    .navbar-custom .navbar-nav-main>li>a {
+        color: #eeeeee!important;
+    }
+    .navbar-custom .navbar-nav-main>li>a {
+        color: #eeeeee!important;
+    }
+    .navbar-custom .navbar-nav-main>li>a:hover {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav-main>.open>a,
+    .navbar-default .navbar-nav-main>.open>a:focus,
+    .navbar-default .navbar-nav-main>.open>a:hover{
+        background: none;
+        text-shadow: none;
+    }
+    .navbar-default .navbar-nav-main>.open>a{
+        color: red!important;
+    }
+}
+/* MD - Resolução a partir de 993px */
+@media screen and (min-width: 993px){
+    ul.navbar-nav-main >li{
+        min-height: 190px;
+        display: table;
+        margin: 0px 1.8em;
+    }
+    section.destaque-produtos div.container {
+        position: absolute;
+        top: -60px;
+        z-index: 30;
+        width: 100%;
+    }
+        div.produtos-linha-imagem img{
+        position: absolute;
+        z-index: 999;
+    }
+    div.produtos-linha-imagem img.img-left{
+        right: -40%;
+        top: 32px;
+    }
+    div.produtos-linha-imagem img.img-right{
+        left: -40%;
+        top: 138px; 
+    }
+    div.produtos-linha-descricao {
+        min-height: 310px;
+    }
+    .box-width-right{
+        float: right;
+    }
+    div.produtos-linha-descricao .box-width {
+        width: 80%;
+        float: right;
+    }
+}
+/* LG - Resolução a partir de 1201px */
+@media screen and (min-width: 1201px){
+	
+}
+/* XL - Resolução a partir de 1599px */
+@media screen and (min-width: 1599px){
+	
+}

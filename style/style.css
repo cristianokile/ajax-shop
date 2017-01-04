@@ -46,27 +46,34 @@ ul.products-wrp li .item-box button[disabled=disabled]{
 }
 
 .cart-box {
-	display: block;
-	width: 30px;
-	background: rgba(219, 0, 33, 1) url(../images/cart-icon.png) no-repeat 20px 5px;
-	padding: 4px 8px 4px 8px;
-	border-radius: 30px;
-	color: #fff;
-	font-family: Arial;
-	font-size: 16px;
-	text-decoration: none;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.32);
-	margin-right: auto;
-	margin-left: auto;
-	font-weight: bold;
+	display: block!important;
+	min-width: 50px!important;
+	height: 30px!important;
+	background: rgba(219, 0, 33, 1) url(../images/cart-icon.png) no-repeat .6em 7px!important;
+	padding: 4px 8px 4px 8px!important;
+	border-radius: 30px!important;
+	color: #fff!important;
+	font-family: Arial!important;
+	font-size: 16px!important;
+	text-decoration: none!important;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.32)!important;
+	margin-right: auto!important;
+	margin-left: auto!important;
+	font-weight: bold!important;
+	position: relative!important;
+    line-height: 145%!important;
+    text-align: right!important;
+    letter-spacing: 0px!important;
+    padding-left: 30px!important;
+    margin-top: 80px;
 }
 .cart-box:hover{
 	background: #FA1C5F url(../images/cart-icon.png) no-repeat 20px 5px;
 }
 .shopping-cart-box{ 
 	position: absolute;
-    left:0;
-    right:0;
+    right:0%;
+    top: 9em;
     margin-left:auto;
     margin-right:auto;
 	max-width: 450px;
@@ -77,6 +84,7 @@ ul.products-wrp li .item-box button[disabled=disabled]{
 	font: small Verdana, Geneva, sans-serif;  
 	margin-top: 10px;
 	display:none;
+	z-index: 999999;
 }
 .shopping-cart-box a{
 	color: #FFD5D5;
@@ -86,7 +94,7 @@ ul.products-wrp li .item-box button[disabled=disabled]{
 	content: '';
 	position: absolute;
 	bottom: 100%;
-	left: 50%;
+	right: 5%;
 	margin-left: -8px;
 	width: 0; height: 0;
 	border-bottom: 8px solid rgba(255, 0, 97, 1);

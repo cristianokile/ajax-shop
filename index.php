@@ -1,14 +1,10 @@
 <?php
+	$pageTitle = "";
+	$pageDescription = "";
 	session_start(); 
-	include("controller/config.inc.php"); 
+	require('header.php');
 ?>
-
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Shopping Ajax</title>
-		<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="style/style.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script>
 			$(document).ready(function(){	
@@ -17,8 +13,8 @@
 					var button_content = $(this).find('button[type=submit]');
 					button_content.html('Adicionando...'); //Loading button text 
 
-					$.ajax({ //make ajax request to add_carrinho.php
-						url: "add_carrinho.php",
+					$.ajax({ //make ajax request to carrinho_add.php
+						url: "carrinho_add.php",
 						type: "POST",
 						dataType:"json", //expect json value from server
 						data: form_data
@@ -38,7 +34,7 @@
 					e.preventDefault(); 
 					$(".shopping-cart-box").fadeIn(); //display cart box
 					$("#shopping-cart-results").html('<img src="images/ajax-loader.gif">'); //show loading image
-					$("#shopping-cart-results" ).load( "add_carrinho.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+					$("#shopping-cart-results" ).load( "carrinho_add.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
 				});
 		
 				//Close Cart
@@ -52,7 +48,7 @@
 					e.preventDefault(); 
 					var pcode = $(this).attr("data-code"); //get product code
 					$(this).parent().fadeOut(); //remove item element from box
-					$.getJSON( "add_carrinho.php", {"remove_code":pcode} , function(data){ //get Item count from Server
+					$.getJSON( "carrinho_add.php", {"remove_code":pcode} , function(data){ //get Item count from Server
 						$("#cart-info").html(data.items); //update Item count in cart-info
 						$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
 					});
@@ -60,114 +56,47 @@
 			});
 		</script>
 	</head>
+</head>	
 	<body>
-		<div align="center">
-			<h3>Shopping Ajax</h3>
-		</div>
+		<header class="header-main">
+			<?php require('nav.php') ?>
+			<?php require('carousel.php') ?>
+		</header>
 
-		<a href="#" class="cart-box" id="cart-info" title="View Cart">
-			<?php 
-			if(isset($_SESSION["products"])){
-				echo count($_SESSION["products"]); 
-			}else{
-				echo 0; 
-			}?>
-		</a>
+		<section class="produtos">
+			<div class="container">
+				<div class="row">
+					<?php require("controller/config.inc.php"); ?>
+					<div class="col-md-12">
+						<div class="row">
+							<?php $results = $mysqli_conn->query("SELECT id, product_name, product_desc, product_code, product_image, product_price FROM products_list"); ?>
 
-		<div class="shopping-cart-box">
-			<a href="#" class="close-shopping-cart-box" >Fechar</a>
-			<h3>Carrinho</h3>
-			<div id="shopping-cart-results">
+							<div class="col-md-12 text-center">
+								<h2>Ariaú</h2>
+							</div>
+
+							<?php while($row = $results->fetch_assoc()) { ?>
+
+								<article class="col-md-4 col-sm-6 col-xs-12">
+									<div class="produto-imagem">
+										<img class="img-responsive" src="images/<?php echo $row['product_image']?>" alt="<?php echo $row['product_name']?>" title="<?php echo $row['product_name']?>">
+									</div>
+									<h3 class="produto-codigo"><?php echo $row["product_code"] ?></h3>
+									<h4 class="produto-titulo"><?php echo $row["product_name"] ?></h4>
+									<!--h5 class="produto-info"><?php echo $row["product_tam"]?></h5 -->
+									<a class="btn" href="produto.php?id=<?php echo $row["id"] ?>" role="button">VER PRODUTO</a>
+								</article>
+
+							<?php }?>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
 
-		<?php
-		//List products from database
-			$results = $mysqli_conn->query("SELECT id, product_name, product_desc, product_code, product_image, product_price FROM products_list");
-		//Display fetched records as you please
-			$products_list =  '<ul class="products-wrp">';
+		<?php 
+		$scripts_footer="";
+		require('footer.php') ?>
 
-			while($row = $results->fetch_assoc()) {
-// $products_list .= <<<EOT
-// <li>
-// <form class="form-item">
-// 	<h4>{$row["product_name"]}</h4>
-// 	<div>
-// 		<a class="btn" href="produto.php?id={$row["id"]}" role="button" title="Ver produto">
-// 			<img src="images/{$row["product_image"]}">
-// 		</a>
-// 	</div>
-// 	<div>Preço : {$currency} {$row["product_price"]}<div>
-// 		<div class="item-box">
-// 			// <div>
-// 			// 	Cor :
-// 			// 	<select name="product_color">
-// 			// 		<option value="Red">Red</option>
-// 			// 		<option value="Blue">Blue</option>
-// 			// 		<option value="Orange">Orange</option>
-// 			// 	</select>
-// 			// </div>
-
-// 			<div>
-// 				Qtde :
-// 				<select name="product_qty">
-// 					<option value="1">1</option>
-// 					<option value="2">2</option>
-// 					<option value="3">3</option>
-// 					<option value="4">4</option>
-// 					<option value="5">5</option>
-// 				</select>
-// 			</div>
-
-// 			// <div>
-// 			// 	Tamanho :
-// 			// 	<select name="product_size">
-// 			// 		<option value="M">M</option>
-// 			// 		<option value="XL">XL</option>
-// 			// 		<option value="XXL">XLL</option>
-// 			// 	</select>
-// 			// </div>
-
-// 			<input name="product_code" type="hidden" value="{$row["product_code"]}">
-// 			<input name="product_image" type="hidden" value="{$row["product_image"]}" >
-// 			<input name="product_id" type="hidden" value="{$row["id"]}" >
-// 			<button type="submit">Adicionar ao Carrinho</button>
-// 		</div>
-// 	</form>
-// </li>
-// EOT;
-$products_list .= <<<EOT
-<li>
-<form class="form-item">
-	<h4>{$row["product_name"]}</h4>
-	<div>
-		<a class="btn" href="produto.php?id={$row["id"]}" role="button" title="Ver produto">
-			<img src="images/{$row["product_image"]}">
-		</a>
-	</div>
-	<div>Preço : {$currency} {$row["product_price"]}<div>
-		<div class="item-box">
-			<div>
-				Qtde :
-				<select name="product_qty">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-				</select>
-			</div>
-
-			<input name="product_code" type="hidden" value="{$row["product_code"]}">
-			<input name="product_image" type="hidden" value="{$row["product_image"]}" >
-			<input name="product_id" type="hidden" value="{$row["id"]}" >
-			<button type="submit">Adicionar ao Carrinho</button>
-		</div>
-	</form>
-</li>
-EOT;
-	}
-		$products_list .= '</ul></div>';
-		echo $products_list;?>
 	</body>
 </html>
