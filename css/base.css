@@ -23,6 +23,7 @@ p {
 html,
 body {
     height: 100%;
+    background: #f9f9f9;
 }
 .btn-default{
 	transition: all 0.5s ease;

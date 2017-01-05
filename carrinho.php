@@ -32,6 +32,17 @@
 						$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
 					});
 				});
+				//Remove items from orcamento
+				$("#orcamento").on('click', 'a.remove-item', function(e) {
+					e.preventDefault(); 
+					var pcode = $(this).attr("data-code"); //get product code
+					$(this).parent().fadeOut(); //remove item element from box
+					$.getJSON( "carrinho_add.php", {"remove_code":pcode} , function(data){ //get Item count from Server
+						$("#cart-info").html(data.items); //update Item count in cart-info
+						$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
+						$(".lista-body" ).load( "carrinho_add.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+					});
+				});
 			});
 		</script>
 </head>	
@@ -48,13 +59,13 @@
 						include("controller/config.inc.php");
 						setlocale(LC_MONETARY,"pt_BR"); 
 					?>
-					<h2>Lista de Desejos</h2>
+					<h2>Solicitar Orçamento</h2>
 					
 					<article class="col-md-12 col-sm-12 col-xs-12">
 						<div class="row">
 							<div class="col-md-12 hidden-xs hidden-sm">
 								<form class="row" method="GET" action="fechar-pedido.php">
-									<ul class="col-md-12 lista-carrinho">
+									<ul class="col-md-12 lista-carrinho" id="orcamento">
 										<li class="lista-header">
 											<div class="row">
 												<div class="col-md-2 text-center">Imagem</div>
@@ -68,27 +79,32 @@
 										</li>
 
 										<?php
+											
 											if(isset($_SESSION["products"]) && count($_SESSION["products"])>0){
+												$cart_box = "";
 												$total 			= 0;
 
 												foreach($_SESSION["products"] as $product){ 
-													$product_image 	= $product["product_image"];
-													$product_name 	= $product["product_name"];
-													$product_qty 	= $product["product_qty"];
-													$product_price 	= $product["product_price"];
-													$product_code 	= $product["product_code"];
+													$product_id 		= $product["id"];
+													$product_name 		= $product["product_name"];
+													$product_code 		= $product["product_code"];
+													$product_size 		= $product["product_size"];
+													$product_cat 		= $product["product_cat"];
+													$product_image 		= $product["product_image"];
+													$product_image_hd	= $product["product_image_hd"];
+													$product_price 		= $product["product_price"];
+													$product_stock 		= $product["product_stock"];
+													$product_qtde		= $product["product_qtde"];
+													//$item_price 		= sprintf("%01.2f",($product_price * $product_qtde));
 													
-													$item_price 	= sprintf("%01.2f",($product_price * $product_qty));
-													
-													$cart_box 		=  "
-													
+													$cart_box 			.=  "
 													<li class='lista-body'>
 														<div class='row'>
 															<div class='col-md-2 lista-foto text-center'>
 																<div class='out center-block'>
 																	<div class='in'>
-																		<a href='produto.php?codigo=" . $product_code . "'>
-																			<img class='img-responsive center-block' src='images/" . $product_image . "' alt='" . $product_name . "' title='" . $product_name . "'>
+																		<a href='produto.php?id=" . $product_id . "'>
+																			<img class='img-responsive center-block' src='" . $product_image . "' alt='" . $product_name . "' title='" . $product_name . "'>
 																		</a>
 																	</div>
 																</div>
@@ -96,31 +112,31 @@
 														<div class='col-md-4 lista-descricao'>
 															<div class='out'>
 																<div class='in'>
-																	<a href='produto.php?codigo=" . $product_code . " title='" . $product_name . "'>
+																	<a href='produto.php?id=" . $product_id . "' title= ". $product_name . ">
 																		<p>" . $product_name . "</p>
 																	</a>
-																	<p><strong>Tamanho: </strong> " . $product_code . "</p>
+																	<p><strong>Tamanho: </strong> " . $product_size . "</p>
 																</div>
 															</div>
 														</div>
 														<div class='col-md-1 lista-categoria text-center'>
 															<div class='out center-block'>
 																<div class='in'>
-																	" . $product_name . "
+																	" . $product_cat . "
 																</div>
 															</div>
 														</div>
 														<div class='col-md-1 lista-estoque text-center'>
 															<div class='out center-block'>
 																<div class='in'>
-																	" . $product_name . "
+																	" . $product_stock . "
 																</div>
 															</div>
 														</div>
 														<div class='col-md-1 lista-preco text-center'>
 															<div class='out center-block'>
 																<div class='in'>
-																	" . $item_price . "
+																	" . $product_price . "
 																</div>
 															</div>
 														</div>
@@ -128,11 +144,11 @@
 															<div class='out center-block'>
 																<div class='in'>
 																	<div class='form-group form-group-options center-block'>
-																		<div id='" . $item_price . " class='input-group input-group-option quantity-wrapper'>
+																		<div id='" . $product_qtde . " class='input-group input-group-option quantity-wrapper'>
 																			<span class='input-group-addon input-group-addon-remove quantity-remove btn'>
 																				<span class='glyphicon glyphicon-minus'></span>
 																			</span>
-																			<input id='" . $item_price . "inp' type='text' value='" . $item_price . "' name='form-qtde' class='form-control quantity-count text-center' placeholder='1'>
+																			<input id='" . $product_id . "inp' type='text' value='" . $product_qtde . "' name='form-qtde' class='form-control quantity-count text-center' placeholder='1'>
 																			<span class='input-group-addon input-group-addon-remove quantity-add btn'>
 																				<span class='glyphicon glyphicon-plus'></span>
 																			</span>
@@ -144,26 +160,51 @@
 														<div class='col-md-1 acao'>
 															<div class='out center-block'>
 																<div class='in'>
-																	<a class='btn btn-lg remove-item' href='#' data-code='$product_code'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
+																	<a class='btn btn-lg remove-item' href='#' data-code='" . $product_code . "'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
 																</div>
 															</div>
 														</div>
-													</div>";
+													</li>";
 													
-													$subtotal 		= ($product_price * $product_qty); 
+													$subtotal 		= ($product_price * $product_qtde); 
 													$total 			= ($total + $subtotal); 
 												}
 												
 												$grand_total = $total; //grand total
-												
+												/*
 												$cart_box .= "<li class=\"view-cart-total\">Total : $currency ".sprintf("%01.2f", $grand_total)."</li>";
 												$cart_box .= "</ul>";
-												
+												*/
 												echo $cart_box;
 											}else{
 												echo "<br><p class='text-center'>Você não possui produtos adicionados</p>";
 											}?>
 									</ul>
+									<ul class="col-md-12  lista-carrinho">
+												<li class="lista-header">
+													<div class="row">
+														<div class="col-md-12 text-center">Informações para Contato</div>
+													</div>
+												</li>
+												<li class="row lista-body">
+													<div class="col-md-12">
+														<div class="row">
+															<div class="form-group col-md-4">
+																<label for="exampleInputName2">Nome</label>
+																<input type="text" class="form-control" id="exampleInputName2" name="form-name" placeholder="Nome">
+															</div>
+															<div class="form-group col-md-4">
+																<label for="exampleInputEmail2">Email</label>
+																<input type="email" class="form-control" id="exampleInputEmail2" name="form-email" placeholder="seu@email.com.br" required>
+															</div>
+															<div class="form-group col-md-4">
+																<label for="exampleInputEmail2">Telefone</label>
+																<input type="text" class="form-control" id="exampleInputTell2" name="form-tel" placeholder="12 0000-0000">
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
 								</form>
 							</div>
 						</div>

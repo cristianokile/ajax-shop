@@ -81,16 +81,14 @@
 	    							</ul>
 	    						</li>
 	    						<li><a href="#">CONTATO</a></li>
-	    						<li>
-	    							<a href="#" class="cart-box" id="cart-info" title="View Cart">
-	    								<?php 
-	    								if(isset($_SESSION["products"])){
-	    									echo count($_SESSION["products"]); 
-	    								}else{
-	    									echo 0; 
-	    								}?>
-	    							</a>
-	    						</li>
+	    						<li><a href="#" class="cart-box" id="cart-info" title="View Cart">
+	    							<?php 
+	    							if(isset($_SESSION["products"])){
+	    								echo count($_SESSION["products"]); 
+	    							}else{
+	    								echo 0; 
+	    							}?>
+	    						</a></li>
 	    					</ul>
 	    				</div><!-- /.navbar-collapse -->
 	    			</div>

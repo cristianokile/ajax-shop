@@ -39,24 +39,83 @@
 			foreach($_SESSION["products"] as $product){ //loop though items and prepare html content
 				
 				//set variables to use them in HTML content below
-				$product_image 		= $product["product_image"]; 
-				$product_name 		= $product["product_name"]; 
-				$product_price 		= $product["product_price"];
+				$product_id 		= $product["id"];
+				$product_name 		= $product["product_name"];
 				$product_code 		= $product["product_code"];
-				$product_qty 		= $product["product_qty"];
-				//$product_color 		= $product["product_color"];
-				//$product_size 		= $product["product_size"];
+				$product_size 		= $product["product_size"];
+				$product_cat 		= $product["product_cat"];
+				$product_image 		= $product["product_image"];
+				$product_image_hd	= $product["product_image_hd"];
+				$product_price 		= $product["product_price"];
+				$product_stock 		= $product["product_stock"];
+				$product_qtde		= $product["product_qtde"];
 				
-				// $cart_box .=  "<li> <img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_name (Qty : $product_qty | $product_color  | $product_size ) &mdash; $currency ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
-				$cart_box .=  "<li> <img style='width:50px; height: 50px' src='images/". $product_image ."'> | $product_name (Qty : $product_qty ) &mdash; $currency ".sprintf("%01.2f", ($product_price * $product_qty)). " <a href=\"#\" class=\"remove-item\" data-code=\"$product_code\">&times;</a></li>";
-				$subtotal = ($product_price * $product_qty);
+				$cart_box .=  
+				"<li class='lista-body'>
+					<div class='row'>
+						<div class='col-md-2 lista-foto text-center'>
+							<div class='out center-block'>
+								<div class='in'>
+									<a href='produto.php?id=" . $product_id . "'>
+										<img class='img-responsive center-block' src='" . $product_image . "' alt='" . $product_name . "' title='" . $product_name . "'>
+									</a>
+								</div>
+							</div>
+						</div>
+					<div class='col-md-4 lista-descricao'>
+						<div class='out'>
+							<div class='in'>
+								<a href='produto.php?id=" . $product_id . "' title= ". $product_name . ">
+									<p>" . $product_name . "</p>
+								</a>
+								<p><strong>Tamanho: </strong> " . $product_size . "</p>
+							</div>
+						</div>
+					</div>
+					<div class='col-md-1 lista-categoria text-center'>
+						<div class='out center-block'>
+							<div class='in'>
+								" . $product_cat . "
+							</div>
+						</div>
+					</div>
+					<div class='col-md-1 lista-estoque text-center'>
+						<div class='out center-block'>
+							<div class='in'>
+								" . $product_stock . "
+							</div>
+						</div>
+					</div>
+					<div class='col-md-1 lista-preco text-center'>
+						<div class='out center-block'>
+							<div class='in'>
+								" . $product_price . "
+							</div>
+						</div>
+					</div>
+					<div class='col-md-2 lista-Itens'>
+						<div class='out center-block'>
+							<div class='in'>
+								" . $product_qtde . "
+							</div>
+						</div>
+					</div>
+					<div class='col-md-1 acao'>
+						<div class='out center-block'>
+							<div class='in'>
+								<a class='btn btn-lg remove-item' href='#' data-code='" . $product_code . "'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
+							</div>
+						</div>
+					</div>
+				</li>";
+				$subtotal = ($product_price);
 				$total = ($total + $subtotal);
 			}
 			$cart_box .= "</ul>";
 			$cart_box .= '<div class="cart-products-total">Total : '.$currency.sprintf("%01.2f",$total).' <u><a href="carrinho.php" title="Revisar o Carrinho e Solicitar orçamento">Solicitar orçamento</a></u></div>';
 			die($cart_box); //exit and output content
 		}else{
-			die("Você não possui produtos adicionados"); //we have empty cart
+			die("<br><p class='text-center'>Você não possui produtos adicionados</p>"); //we have empty cart
 		}
 	}
 

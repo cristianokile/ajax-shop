@@ -3,7 +3,6 @@ section.breadcrumb {
     padding: 20px 15px;
     margin: 40px 0;
     list-style: none;
-    background-color: #ffffff;
     border-radius: 0;
 }
 section.breadcrumb:after {
