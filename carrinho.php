@@ -206,7 +206,17 @@
 									</ul>
 									<div class="col-md-12 text-right">
 										<a class="btn btn-padrao btn-default pull-left" href="catalogo.php">Voltar para o Catálogo</a>
-										<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>
+											<input name="id" type="hidden" value="{$row['id']}">
+											<input name="product_name" type="hidden" value="{$row['product_name']}">
+											<input name="product_code" type="hidden" value="{$row['product_code']}">
+											<input name="product_size" type="hidden" value="{$row['product_size']}">
+											<input name="product_cat" type="hidden" value="{$row['product_cat']}">
+											<input name="product_image" type="hidden" value="{$row['product_image']}">
+											<input name="product_image_hd" type="hidden" value="{$row['product_image_hd']}">
+											<input name="product_price" type="hidden" value="{$row['product_price']}">
+											<input name="product_stock" type="hidden" value="{$row['product_stock']}">
+											<input name="product_qtde" type="hidden" value="{$row['product_stock']}">
+											<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>
 										<br><br><br>
 									</div>
 								</form>
