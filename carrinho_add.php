@@ -34,7 +34,10 @@
 	
 	if(isset($_POST["load_cart"]) && $_POST["load_cart"]==1){
 		if(isset($_SESSION["products"]) && count($_SESSION["products"])>0){ //if we have session variable
-			$cart_box = '<ul class="cart-products-loaded">';
+			$cart_box = '<ul class="cart-products-loaded">
+			<li class="lista-body">
+				
+			</li>';
 			$total = 0;
 			foreach($_SESSION["products"] as $product){ //loop though items and prepare html content
 				
@@ -109,10 +112,10 @@
 					</div>
 				</li>";
 				$subtotal = ($product_price);
-				$total = ($total + $subtotal);
+				$total = $product_qtde;
 			}
 			$cart_box .= "</ul>";
-			$cart_box .= '<div class="cart-products-total">Total : '.$currency.sprintf("%01.2f",$total).' <u><a href="carrinho.php" title="Revisar o Carrinho e Solicitar orçamento">Solicitar orçamento</a></u></div>';
+			$cart_box .= '<div class="cart-products-total"><u><a class="btn btn-default" href="carrinho.php" title="Revisar o Carrinho e Solicitar orçamento">Solicitar orçamento</a></u></div>';
 			die($cart_box); //exit and output content
 		}else{
 			die("<br><p class='text-center'>Você não possui produtos adicionados</p>"); //we have empty cart

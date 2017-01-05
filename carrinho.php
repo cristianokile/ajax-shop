@@ -5,7 +5,6 @@
 	require('header.php');
 ?>
 <link href="style/style.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script>
 			$(document).ready(function(){	
 				//Show Items in Cart
@@ -53,7 +52,7 @@
 			<?php require('carousel-simple.php') ?>
 		</header>
 		<section class="carrinho">
-			<div class="container" style="border-top: 1px solid #ef494f; min-height: 300px">
+			<div class="container">
 				<div class="row">
 					<?php 
 						include("controller/config.inc.php");
@@ -144,7 +143,7 @@
 															<div class='out center-block'>
 																<div class='in'>
 																	<div class='form-group form-group-options center-block'>
-																		<div id='" . $product_qtde . " class='input-group input-group-option quantity-wrapper'>
+																		<div id='" . $product_id . "' class='input-group input-group-option quantity-wrapper'>
 																			<span class='input-group-addon input-group-addon-remove quantity-remove btn'>
 																				<span class='glyphicon glyphicon-minus'></span>
 																			</span>
@@ -160,7 +159,7 @@
 														<div class='col-md-1 acao'>
 															<div class='out center-block'>
 																<div class='in'>
-																	<a class='btn btn-lg remove-item' href='#' data-code='" . $product_code . "'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
+																	<a class='remove-item btn btn-lg btn-remove' href='#' data-code='" . $product_code . "'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
 																</div>
 															</div>
 														</div>
@@ -181,30 +180,35 @@
 											}?>
 									</ul>
 									<ul class="col-md-12  lista-carrinho">
-												<li class="lista-header">
-													<div class="row">
-														<div class="col-md-12 text-center">Informações para Contato</div>
+										<li class="lista-header">
+											<div class="row">
+												<div class="col-md-12 text-center">Informações para Contato</div>
+											</div>
+										</li>
+										<li class="row lista-body">
+											<div class="col-md-12">
+												<div class="row">
+													<div class="form-group col-md-4">
+														<label for="exampleInputName2">Nome</label>
+														<input type="text" class="form-control" id="exampleInputName2" name="form-name" placeholder="Nome">
 													</div>
-												</li>
-												<li class="row lista-body">
-													<div class="col-md-12">
-														<div class="row">
-															<div class="form-group col-md-4">
-																<label for="exampleInputName2">Nome</label>
-																<input type="text" class="form-control" id="exampleInputName2" name="form-name" placeholder="Nome">
-															</div>
-															<div class="form-group col-md-4">
-																<label for="exampleInputEmail2">Email</label>
-																<input type="email" class="form-control" id="exampleInputEmail2" name="form-email" placeholder="seu@email.com.br" required>
-															</div>
-															<div class="form-group col-md-4">
-																<label for="exampleInputEmail2">Telefone</label>
-																<input type="text" class="form-control" id="exampleInputTell2" name="form-tel" placeholder="12 0000-0000">
-															</div>
-														</div>
+													<div class="form-group col-md-4">
+														<label for="exampleInputEmail2">Email</label>
+														<input type="email" class="form-control" id="exampleInputEmail2" name="form-email" placeholder="seu@email.com.br" required>
 													</div>
-												</li>
-											</ul>
+													<div class="form-group col-md-4">
+														<label for="exampleInputEmail2">Telefone</label>
+														<input type="text" class="form-control" id="exampleInputTell2" name="form-tel" placeholder="12 0000-0000">
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+									<div class="col-md-12 text-right">
+										<a class="btn btn-padrao btn-default pull-left" href="catalogo.php">Voltar para o Catálogo</a>
+										<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>
+										<br><br><br>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -215,5 +219,60 @@
 		</section>
 
 		<?php require('footer.php') ?>
+		<script>
+			$(document).ready(function(){
+			    //Add
+			    $(".quantity-add").click(function(e){
+			        //Vars
+			        var count = 1;
+			        var newcount = 0;
+			        
+			        //Wert holen + Rechnen
+			        var elemID = $(this).parent().attr("id");
+			        var countField = $("#"+elemID+'inp');
+			        var count = $("#"+elemID+'inp').val();
+			        var newcount = parseInt(count) + 1;
+			        
+			        //Neuen Wert setzen
+			        $("#"+elemID+'inp').val(newcount);
+			    });
+
+			    //Remove
+			    $(".quantity-remove").click(function(e){
+			        //Vars
+			        var count = 1;
+			        var newcount = 0;
+			        
+			        //Wert holen + Rechnen
+			        var elemID = $(this).parent().attr("id");
+			        var countField = $("#"+elemID+'inp');
+			        var count = $("#"+elemID+'inp').val();
+			        var newcount = parseInt(count) - 1;
+			        
+			        //Neuen Wert setzen
+			        $("#"+elemID+'inp').val(newcount);
+			        
+			    });
+
+			    //Delete
+			    $(".quantity-delete").click(function(e){
+			        //Vars
+			        var count = 1;
+			        var newcount = 0;
+			        
+			        //Wert holen + Rechnen
+			        var elemID = $(this).parent().attr("id");
+			        var countField = $("#"+elemID+'inp');
+			        var count = $("#"+elemID+'inp').val();
+			        var newcount = parseInt(count) - 1;
+			        
+			        //Neuen Wert setzen
+			        //$('.item').html('');
+			        
+			       var row = $( ".row" );
+			        $(event.target).closest(row).html('');
+			    });
+			});
+		</script>
 	</body>
 </html>

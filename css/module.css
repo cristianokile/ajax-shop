@@ -4,6 +4,7 @@ section.breadcrumb {
     margin: 40px 0;
     list-style: none;
     border-radius: 0;
+    background: #f9f9f9;
 }
 section.breadcrumb:after {
     content: "";
@@ -221,7 +222,9 @@ section.produto h5 strong{
 }
 section.produto article a.btn,
 a.btn-padrao,
-input.btn{
+input.btn,
+button.btn, 
+button.btn:focus{
      font-size: .8em;
      letter-spacing: 1px;
      color: #ef494f;
@@ -231,10 +234,12 @@ input.btn{
      line-height: 100%;
      margin: 20px 0;
      background: none;
-     transition: background 400ms, color 400ms;
+     outline: none;
+     transition: all 0.5s ease;
 }
 section.produto article a.btn:hover,
-input.btn:hover{
+input.btn:hover,
+button.btn:hover{
      background:#ef494f;
      color: #ffffff;
 }

@@ -12,7 +12,7 @@ require('header.php');
 				$(".form-item").submit(function(e){
 					var form_data = $(this).serialize();
 					var button_content = $(this).find('button[type=submit]');
-					button_content.html('Adicionando...'); //Loading button text 
+					button_content.html('ADICIONANDO...'); //Loading button text 
 
 					$.ajax({ //make ajax request to carrinho_add.php
 						url: "carrinho_add.php",
@@ -21,7 +21,7 @@ require('header.php');
 						data: form_data
 					}).done(function(data){ //on Ajax success
 						$("#cart-info").html(data.items); //total items in cart-info element
-						button_content.html('Adicionar ao Carrinho'); //reset button text to original text
+						button_content.html('ADICIONAR AO ORÇAMENTO'); //reset button text to original text
 						//alert("Adicionado ao carrinho!"); //alert user
 						if($(".shopping-cart-box").css("display") == "block"){ //if cart box is still visible
 							$(".cart-box").trigger( "click" ); //trigger click to update the cart box.
@@ -86,7 +86,7 @@ require('header.php');
 		</section>
 
 		<section class="produto" id="produto-01">
-			<div class="container">
+			<div class="container" >
 				<div class="row">
 
 				<?php 
@@ -96,10 +96,6 @@ require('header.php');
 					if(isset($_GET['id'])) {
 						$produto = $_GET['id'];
 						$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE id =" . $produto); ?>
-
-							<div class="col-md-12 text-center">
-								<h2>Ariaú</h2>
-							</div>
 							<?php $products_list = "";?>
 
 							<?php while($row = $results->fetch_assoc()) { 
@@ -109,7 +105,7 @@ require('header.php');
 										<article class="col-md-12 col-sm-12 col-xs-12 text-center">
 											<h2 class="produto-codigo">{$row['product_code']}</h2>
 											<h3 class="produto-titulo">{$row['product_name']}</h3>
-											<h4 class="produto-info">{$row['product_stock']}</h4>
+											<h4 class="produto-info">{$row['product_size']}</h4>
 											<div class="produto-imagem">
 												<img class="img-responsive center-block" src="{$row['product_image']}" alt="{$row['product_name']}" title="{$row['product_name']}">
 											</div>
@@ -135,7 +131,7 @@ require('header.php');
 											<input name="product_image_hd" type="hidden" value="{$row['product_image_hd']}">
 											<input name="product_price" type="hidden" value="{$row['product_price']}">
 											<input name="product_stock" type="hidden" value="{$row['product_stock']}">
-											<button type="submit">Adicionar ao Carrinho</button>
+											<button class="btn btn-add" type="submit">ADICIONAR AO ORÇAMENTO</button>
 										</article>
 									</form>
 EOT;

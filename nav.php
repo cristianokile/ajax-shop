@@ -81,16 +81,24 @@
 	    							</ul>
 	    						</li>
 	    						<li><a href="#">CONTATO</a></li>
-	    						<li><a href="#" class="cart-box" id="cart-info" title="View Cart">
-	    							<?php 
-	    							if(isset($_SESSION["products"])){
-	    								echo count($_SESSION["products"]); 
-	    							}else{
-	    								echo 0; 
-	    							}?>
-	    						</a></li>
 	    					</ul>
 	    				</div><!-- /.navbar-collapse -->
+	    				<div style="position: relative;">
+	    					<a href="#" class="cart-box" id="cart-info" title="View Cart">
+	    						<?php 
+	    						if(isset($_SESSION["products"])){
+	    							echo count($_SESSION["products"]); 
+	    						}else{
+	    							echo 0; 
+	    						}?>
+	    					</a>
+    						<div class="shopping-cart-box">
+    							<a href="#" class="close-shopping-cart-box" >Fechar</a>
+    							<h3>Orçamento</h3>
+    							<div id="shopping-cart-results">
+    							</div>
+    						</div>
+	    				</div>
 	    			</div>
     			</div><!-- /.container-fluid -->
     		</nav>
@@ -203,10 +211,6 @@
 					</div>
 				</div>
 			</nav>
-			<div class="shopping-cart-box">
-				<a href="#" class="close-shopping-cart-box" >Fechar</a>
-				<h3>Carrinho</h3>
-				<div id="shopping-cart-results">
-				</div>
-			</div>
+			
+			
 			
