@@ -62,7 +62,7 @@ require('header.php');
 	    	<?php require('nav.php') ?>
 			<?php require('carousel-simple.php') ?>
 		</header>
-
+		<div class="container divider"></div>
 		<section class="breadcrumb">
 			<div class="row">
 				<div class="col-md-12 text-center">

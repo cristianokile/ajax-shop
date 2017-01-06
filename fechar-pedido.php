@@ -1,123 +1,120 @@
-<?php 
-$pageTitle = "RBC Global Business | Carrinho";
-$pageDescription = "";
-session_start(); 
-require('header.php');?>
-</head>	
-
-<?php 
-require 'controller/connect.php';
-require 'controller/item.php';
-
-if(isset($_GET['form-qtde'])) {
-	$qtde = $_GET['form-qtde'];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<?php session_start(); ?>
+	<style>
+		*{font-family: arial, verdana, 'sans-serif'}
+		table, th, td {
+			border: 1px solid black;
+		}
+		th{background: #ccc; padding: 10px 0}
+	</style>
+</head>
+<body>
+	
+<?php if(isset($_POST['form-nome'])) {
+	$form_nome = $_POST['form-nome'] . "<br>";
 };
-if(isset($_GET['form-nome'])) {
-	$form_nome = $_GET['form-nome'];
-};
-if(isset($_GET['form-email'])) {
-	$form_email = $_GET['form-email'];
+if(isset($_POST['form-email'])) {
+	$form_email = $_POST['form-email'] . "<br>";
 };
 if(isset($_GET['form-tel'])) {
-	$form_tel = $_GET['form-tel'];
-};
+	$form_tel = $_POST['form-tel'];
+}; ?>
 
-if(isset($_GET['id'])) {
-	$result = mysqli_query($con, 'SELECT * FROM produtos WHERE id='.$_GET['id']);
-	$produtos = mysqli_fetch_object($result);
-	$item = new Item();
+<?php  $cart_box 			=  "
+<div class='col-md-12'>
+	<h2>Dados do Solicitante</h2>
+	<hr>
+	<br>
+	<p><strong>Nome:</strong> $form_nome</p>
+	<p><strong>E-mail:</strong> $form_email</p>
+	<p><strong>Telefone:</strong> $form_tel</p>
+	<hr>
+	<br>
+";?>
 
-	$item->imagem  		= $produtos->produto_img;
-	$item->id  			= $produtos->id;
-	$item->codigo  		= $produtos->produto_cod;
-	$item->nome  		= $produtos->produto_nome;
-	$item->tamanho  	= $produtos->produto_tam;
-	$item->categoria  	= $produtos->produto_cat;
-	$item->quantidade  	= $qtde;
-	$item->estoque  	= $produtos->produto_qtde;
-	$item->preco  		= $produtos->produto_preco;
-	$item->num_item = 1;
+<?php // -------------------- ?>
 
-	// Checa se o produto existe no carrinho
-	$index = -1;
-	$cart = unserialize(serialize($_SESSION['cart']));
-	for ($i=0; $i < count($cart); $i++) 
-		if ($cart[$i]->id==$_GET['id']) 
-		{
-			$index = $i;
-			break;
-		}
-		if($index==-1){
-			$_SESSION['cart'][] = $item;
-		}
-		else{
-			$cart[$index]->num_item++;
-			$_SESSION['cart'] = $cart;
-		}
+<?php $cart_box 			.=  "
+		<h2>Produtos Solicitados</h2>
+		<table style='border-collapse: collapse; width: 100%; border: 1px solid black;'>
+			<tr>
+				<th style='text-align: center;''>Imagem</td>
+				<th>Descrição</td>
+				<th style='text-align: center;'>Categoria</td>
+				<th style='text-align: center;'>Estoque</td>
+				<th style='text-align: center;'>Qtde Desejada</td>
+			</tr>";?>
 	
-}
-	// Apaga o Produto no carrinho
-	if(isset($_GET['index'])){
-		$cart = unserialize (serialize($_SESSION['cart']));
-		unset($cart[$_GET['index']]);
-		$cart = array_values($cart);
-		$_SESSION['cart'] = $cart;
-	}
-?>
+</table>
+<?php
+	if(isset($_SESSION["products"]) && count($_SESSION["products"])>0){
+		$cart_box .= "<ul class='col-md-12 lista-carrinho'>";
+		$total 			= 0;
 
-<?php $cart = unserialize(serialize($_SESSION['cart']));
-	$s = 0; 
-	$index = 0;
-	$vazio = count($cart); ?>
+		foreach($_SESSION["products"] as $product){ 
+			$product_id 		= $product["id"];
+			$product_name 		= $product["product_name"];
+			$product_code 		= $product["product_code"];
+			$product_size 		= $product["product_size"];
+			$product_cat 		= $product["product_cat"];
+			$product_image 		= $product["product_image"];
+			$product_image_hd	= $product["product_image_hd"];
+			$product_price 		= $product["product_price"];
+			$product_stock 		= $product["product_stock"];
+			$product_qtde		= $product["product_qtde"];
+													//$item_price 		= sprintf("%01.2f",($product_price * $product_qtde));
+
+			$cart_box 			.=  "
+			<tr>
+				<td style='text-align: center;'>
+					<img style='width: 15%; height: auto;'src='" . $product_image . "' alt='" . $product_name . "' title='" . $product_name . "'>
+				</td>
+				<td style='text-align: center;'>
+					<p>" . $product_name . "</p>
+					<p><strong>Tamanho: </strong> " . $product_size . "</p>
+				</td>
+				<td style='text-align: center;'>
+					" . $product_cat . "
+					</div>
+				</td>
+				<td style='text-align: center;'>
+					" . $product_stock . "
+				</td>
+				<td style='text-align: center;'>
+					" . $product_qtde . "
+				</td>
+			</tr>";
+
+				$subtotal 		= ($product_price * $product_qtde); 
+				$total 			= ($total + $subtotal); 
+			}
+
+			$grand_total = $total; //grand total
+			/*
+			$cart_box .= "<li class=\"view-cart-total\">Total : $currency ".sprintf("%01.2f", $grand_total)."</li>";
+			$cart_box .= "</ul>";
+
+			*/
+			$cart_box .="</table>
+			<br>
+			<p style='display:block; text-align:center'><small> - Orçamento solicitado via formulário do site <strong>RBC Global Business</strong> - </small>";	 
+			}else{
+				echo "<br><p class='text-center'>Você não possui produtos adicionados</p>";
+			}?>
+		</ul>
+
+<?php // -------------------- ?>
+
+
 <?php 
 $mailbody = null;
-$mailbody = "
-	<h2><strong>Dados do Cliente</strong></h2>
-	<table cellpadding=\"1\" cellspacing=\"1\" border=\"1\" style=\"text-align: center;\">
-		<tr>
-			<td>Nome</td>
-			<td>" . $form_nome . "</td>
-		</tr>
-		<tr>
-			<td>E-mail</td>
-			<td>" . $form_email . "</td>
-		</tr>
-		<tr>
-			<td>Telefone</td>
-			<td>" . $form_telefone . "</td>
-		</tr>
-	</table>
-	<br><br>
-	<table cellpadding=\"1\" cellspacing=\"1\" border=\"1\" style=\"text-align: center;\">
-		<tr>
-			<th>Imagem</th>
-			<th>Titulo</th>
-			<th>Tamanho</th>
-			<th>Categoria</th>
-			<th>Estoque</th>
-			<th>Preço</th>
-			<th>Quantidade Desejada</th>
-		</tr>
-"?>	
+$mailbody = $cart_box; ?>	
 
-		<?php for ($i=0; $i < count($cart); $i++) {  
-			$s += $cart[$i]->preco * $cart[$i]->num_item;
-			$mailbody.='
-			<tr>
-				<td>
-					<img style="width: 25%" src="http://chiapadesign.com.br/beta/ses/'. $cart[$i]->imagem . '" alt="' . $cart[$i]->nome . '">
-				</td>
-				<td>'. $cart[$i]->imagem . '</td>
-				<td>'. $cart[$i]->nome . '</td>
-				<td>'. $cart[$i]->tamanho . '</td>
-				<td>'. $cart[$i]->categoria . '</td>
-				<td>'. $cart[$i]->estoque . '</td>
-				<td>'. $cart[$i]->preco . '</td>
-				<td>'. $item->quantidade = $qtde; . '</td>
-		 	</tr>'?>
-		 <?php 
-		 	$index++;
-		 } ?>
+		
 	</table>
 
 
@@ -147,14 +144,15 @@ $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'TESTE DE ENVIO DE EMAIL';
+$mail->Subject = 'Orçamento de Produtos';
 $mail->Body    = $mailbody;
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    echo 'Message has been sent';
+    echo 'Orçamento enviado!';
 } ?>
 
-
+</body>
+</html>

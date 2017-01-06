@@ -4,7 +4,6 @@
 	session_start(); 
 	require('header.php');
 ?>
-<link href="style/style.css" rel="stylesheet" type="text/css">
 		<script>
 			$(document).ready(function(){	
 				//Show Items in Cart
@@ -23,27 +22,31 @@
 		
 				//Remove items from cart
 				$("#shopping-cart-results").on('click', 'a.remove-item', function(e) {
+					window.location.reload();
 					e.preventDefault(); 
 					var pcode = $(this).attr("data-code"); //get product code
 					$(this).parent().fadeOut(); //remove item element from box
 					$.getJSON( "carrinho_add.php", {"remove_code":pcode} , function(data){ //get Item count from Server
 						$("#cart-info").html(data.items); //update Item count in cart-info
 						$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
+						$(".lista-body").load( "carrinho_add.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
 					});
 				});
 				//Remove items from orcamento
 				$("#orcamento").on('click', 'a.remove-item', function(e) {
+					window.location.reload();
 					e.preventDefault(); 
 					var pcode = $(this).attr("data-code"); //get product code
 					$(this).parent().fadeOut(); //remove item element from box
 					$.getJSON( "carrinho_add.php", {"remove_code":pcode} , function(data){ //get Item count from Server
 						$("#cart-info").html(data.items); //update Item count in cart-info
 						$(".cart-box").trigger( "click" ); //trigger click on cart-box to update the items list
-						$(".lista-body" ).load( "carrinho_add.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
+						$(".lista-body").load( "carrinho_add.php", {"load_cart":"1"}); //Make ajax request using jQuery Load() & update results
 					});
 				});
 			});
 		</script>
+		<script src="js/jquery.maskedinput.js"></script>
 </head>	
 	<body>
 
@@ -51,6 +54,7 @@
 			<?php require('nav.php') ?>
 			<?php require('carousel-simple.php') ?>
 		</header>
+		<div class="container divider"></div>
 		<section class="carrinho">
 			<div class="container">
 				<div class="row">
@@ -63,15 +67,14 @@
 					<article class="col-md-12 col-sm-12 col-xs-12">
 						<div class="row">
 							<div class="col-md-12 hidden-xs hidden-sm">
-								<form class="row" method="GET" action="fechar-pedido.php">
+								<form class="row" method="POST" action="fechar-pedido.php">
 									<ul class="col-md-12 lista-carrinho" id="orcamento">
 										<li class="lista-header">
 											<div class="row">
 												<div class="col-md-2 text-center">Imagem</div>
 												<div class="col-md-4">Descrição</div>
-												<div class="col-md-1 text-center">Categoria</div>
+												<div class="col-md-2 text-center">Categoria</div>
 												<div class="col-md-1 text-center">Estoque</div>
-												<div class="col-md-1 text-center">Preço</div>
 												<div class="col-md-2 text-center">Quantidade Desejada</div>
 												<div class="col-md-1 text-center">Remover?</div>
 											</div>
@@ -118,7 +121,7 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-1 lista-categoria text-center'>
+														<div class='col-md-2 lista-categoria text-center'>
 															<div class='out center-block'>
 																<div class='in'>
 																	" . $product_cat . "
@@ -129,13 +132,6 @@
 															<div class='out center-block'>
 																<div class='in'>
 																	" . $product_stock . "
-																</div>
-															</div>
-														</div>
-														<div class='col-md-1 lista-preco text-center'>
-															<div class='out center-block'>
-																<div class='in'>
-																	" . $product_price . "
 																</div>
 															</div>
 														</div>
@@ -190,7 +186,7 @@
 												<div class="row">
 													<div class="form-group col-md-4">
 														<label for="exampleInputName2">Nome</label>
-														<input type="text" class="form-control" id="exampleInputName2" name="form-name" placeholder="Nome">
+														<input type="text" class="form-control" id="exampleInputName2" name="form-nome" placeholder="Nome">
 													</div>
 													<div class="form-group col-md-4">
 														<label for="exampleInputEmail2">Email</label>
@@ -198,7 +194,7 @@
 													</div>
 													<div class="form-group col-md-4">
 														<label for="exampleInputEmail2">Telefone</label>
-														<input type="text" class="form-control" id="exampleInputTell2" name="form-tel" placeholder="12 0000-0000">
+														<input type="text" class="form-control telefone" id="exampleInputTell2" name="form-tel" placeholder="11 0000-0000">
 													</div>
 												</div>
 											</div>
@@ -216,6 +212,9 @@
 											<input name="product_price" type="hidden" value="{$row['product_price']}">
 											<input name="product_stock" type="hidden" value="{$row['product_stock']}">
 											<input name="product_qtde" type="hidden" value="{$row['product_stock']}">
+											<input name="cliente_nome" type="hidden" value="form-nome">
+											<input name="cliente_email" type="hidden" value="form-email">
+											<input name="cliente_tel" type="hidden" value="form-tel">
 											<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>
 										<br><br><br>
 									</div>
@@ -282,6 +281,22 @@
 			       var row = $( ".row" );
 			        $(event.target).closest(row).html('');
 			    });
+
+			    //Máscara de Telefone
+			    $("input.telefone")
+			        .mask("(99) 9999-9999?9")
+			        .focusout(function (event) {  
+			            var target, phone, element;  
+			            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+			            phone = target.value.replace(/\D/g, '');
+			            element = $(target);  
+			            element.unmask();  
+			            if(phone.length > 10) {  
+			                element.mask("(99) 99999-999?9");  
+			            } else {  
+			                element.mask("(99) 9999-9999?9");  
+			            }  
+			        });
 			});
 		</script>
 	</body>

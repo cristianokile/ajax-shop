@@ -227,7 +227,7 @@
         color: #eeeeee;
     }
     .navbar-custom .navbar-nav-main>li>a:hover {
-        /*color: #ffffff;*/
+        color: #ffffff;
     }
     .navbar-default .navbar-nav-main>.open>a,
     .navbar-default .navbar-nav-main>.open>a:focus,

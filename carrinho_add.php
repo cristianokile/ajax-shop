@@ -16,18 +16,18 @@
 		$statement->bind_result($product_name, $product_price);
 
 		while($statement->fetch()){ 
-			$new_product["product_name"] = $product_name; //fetch product name from database
-			$new_product["product_price"] = $product_price;  //fetch product price from database
-			if(isset($_SESSION["products"])){  //if session var already exist
-				if(isset($_SESSION["products"][$new_product['product_code']])) //check item exist in products array
+			$new_product["product_name"] = $product_name; 
+			$new_product["product_price"] = $product_price;  
+			if(isset($_SESSION["products"])){ 
+				if(isset($_SESSION["products"][$new_product['product_code']])) 
 				{
-					unset($_SESSION["products"][$new_product['product_code']]); //unset old item
+					unset($_SESSION["products"][$new_product['product_code']]); 
 				}			
 			}
-			$_SESSION["products"][$new_product['product_code']] = $new_product;	//update products with new item array	
+			$_SESSION["products"][$new_product['product_code']] = $new_product;	
 		}
-	 	$total_items = count($_SESSION["products"]); //count total items
-		die(json_encode(array('items'=>$total_items))); //output json 
+	 	$total_items = count($_SESSION["products"]); 
+		die(json_encode(array('items'=>$total_items))); 
 	}
 
 	################## list products in cart ###################
@@ -35,9 +35,7 @@
 	if(isset($_POST["load_cart"]) && $_POST["load_cart"]==1){
 		if(isset($_SESSION["products"]) && count($_SESSION["products"])>0){ //if we have session variable
 			$cart_box = '<ul class="cart-products-loaded">
-			<li class="lista-body">
-				
-			</li>';
+			';
 			$total = 0;
 			foreach($_SESSION["products"] as $product){ //loop though items and prepare html content
 				
@@ -65,48 +63,28 @@
 								</div>
 							</div>
 						</div>
-					<div class='col-md-4 lista-descricao'>
-						<div class='out'>
-							<div class='in'>
-								<a href='produto.php?id=" . $product_id . "' title= ". $product_name . ">
-									<p>" . $product_name . "</p>
-								</a>
-								<p><strong>Tamanho: </strong> " . $product_size . "</p>
+						<div class='col-md-6 lista-descricao'>
+							<div class='out'>
+								<div class='in'>
+									<a href='produto.php?id=" . $product_id . "' title= ". $product_name . ">
+										<p><strong>" . $product_name . "</strong></p>
+									</a>
+									<p><strong>Tamanho: <br></strong> " . $product_size . "</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class='col-md-1 lista-categoria text-center'>
-						<div class='out center-block'>
-							<div class='in'>
-								" . $product_cat . "
+						<div class='col-md-2 lista-Itens'>
+							<div class='out center-block'>
+								<div class='in text-center'>
+									<p><strong>Qtde:</strong><br>" . $product_qtde . "</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class='col-md-1 lista-estoque text-center'>
-						<div class='out center-block'>
-							<div class='in'>
-								" . $product_stock . "
-							</div>
-						</div>
-					</div>
-					<div class='col-md-1 lista-preco text-center'>
-						<div class='out center-block'>
-							<div class='in'>
-								" . $product_price . "
-							</div>
-						</div>
-					</div>
-					<div class='col-md-2 lista-Itens'>
-						<div class='out center-block'>
-							<div class='in'>
-								" . $product_qtde . "
-							</div>
-						</div>
-					</div>
-					<div class='col-md-1 acao'>
-						<div class='out center-block'>
-							<div class='in'>
-								<a class='btn btn-lg remove-item' href='#' data-code='" . $product_code . "'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
+						<div class='col-md-2 acao'>
+							<div class='out center-block'>
+								<div class='in'>
+									<a class='btn btn-lg remove-item' href='#' data-code='" . $product_code . "'><i class='glyphicon glyphicon-trash' aria-hidden='true'></i></a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -118,7 +96,12 @@
 			$cart_box .= '<div class="cart-products-total"><u><a class="btn btn-default" href="carrinho.php" title="Revisar o Carrinho e Solicitar orçamento">Solicitar orçamento</a></u></div>';
 			die($cart_box); //exit and output content
 		}else{
-			die("<br><p class='text-center'>Você não possui produtos adicionados</p>"); //we have empty cart
+			die("
+				<ul class='cart-products-loaded'>
+					<li class='lista-body'>
+						<br><p class='text-center'>Você não possui produtos adicionados</p><br>
+					</li>
+				</ul>"); //we have empty cart
 		}
 	}
 
@@ -126,12 +109,10 @@
 	if(isset($_GET["remove_code"]) && isset($_SESSION["products"]))
 	{
 		$product_code   = filter_var($_GET["remove_code"], FILTER_SANITIZE_STRING); //get the product code to remove
-
 		if(isset($_SESSION["products"][$product_code]))
 		{
 			unset($_SESSION["products"][$product_code]);
 		}
-		
 	 	$total_items = count($_SESSION["products"]);
 		die(json_encode(array('items'=>$total_items)));
 	}
