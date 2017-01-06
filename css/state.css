@@ -244,7 +244,7 @@
     ul.navbar-nav-main >li{
         min-height: 190px;
         display: table;
-        margin: 0px 1.8em;
+        margin: 0px 0.8em;
     }
     section.destaque-produtos div.container {
         position: absolute;

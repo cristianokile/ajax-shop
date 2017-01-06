@@ -186,15 +186,15 @@
 												<div class="row">
 													<div class="form-group col-md-4">
 														<label for="exampleInputName2">Nome</label>
-														<input type="text" class="form-control" id="exampleInputName2" name="form-nome" placeholder="Nome">
+														<input type="text" class="form-control" id="exampleInputName2" name="cliente_nome" placeholder="Nome">
 													</div>
 													<div class="form-group col-md-4">
 														<label for="exampleInputEmail2">Email</label>
-														<input type="email" class="form-control" id="exampleInputEmail2" name="form-email" placeholder="seu@email.com.br" required>
+														<input type="email" class="form-control" id="exampleInputEmail2" name="cliente_email" placeholder="seu@email.com.br" required>
 													</div>
 													<div class="form-group col-md-4">
 														<label for="exampleInputEmail2">Telefone</label>
-														<input type="text" class="form-control telefone" id="exampleInputTell2" name="form-tel" placeholder="11 0000-0000">
+														<input type="text" class="form-control telefone" id="exampleInputTell2" name="cliente_tel" placeholder="11 0000-0000">
 													</div>
 												</div>
 											</div>
@@ -212,9 +212,6 @@
 											<input name="product_price" type="hidden" value="{$row['product_price']}">
 											<input name="product_stock" type="hidden" value="{$row['product_stock']}">
 											<input name="product_qtde" type="hidden" value="{$row['product_stock']}">
-											<input name="cliente_nome" type="hidden" value="form-nome">
-											<input name="cliente_email" type="hidden" value="form-email">
-											<input name="cliente_tel" type="hidden" value="form-tel">
 											<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>
 										<br><br><br>
 									</div>
