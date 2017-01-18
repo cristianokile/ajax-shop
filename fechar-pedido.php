@@ -60,6 +60,8 @@ if(isset($_POST['cliente_tel'])) {
 			$product_code 		= $product["product_code"];
 			$product_size 		= $product["product_size"];
 			$product_cat 		= $product["product_cat"];
+			$product_subcat 	= $product["product_subcat"];
+			$product_type 		= $product["product_type"];
 			$product_image 		= $product["product_image"];
 			$product_image_hd	= $product["product_image_hd"];
 			$product_price 		= $product["product_price"];
@@ -76,9 +78,13 @@ if(isset($_POST['cliente_tel'])) {
 					<p>" . $product_name . "</p>
 					<p><strong>Tamanho: </strong> " . $product_size . "</p>
 				</td>
-				<td style='text-align: center; border: 1px solid black;'>
-					" . $product_cat . "
-				</td>
+				<td style='text-align: center; border: 1px solid black;'>";
+
+			$cart_box 	.= $product_cat;  
+			if (isset($product_subcat)) : $cart_box .=" &rsaquo; " . $product_subcat; endif;
+			if (isset($product_type)) : $cart_box .=" &rsaquo; " . $product_type; endif;
+					
+			$cart_box 	.="</td>
 				<td style='text-align: center; border: 1px solid black;'>
 					" . $product_qtde . "
 				</td>
@@ -130,7 +136,8 @@ $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, 
 $mail->Port = 587;                                    // TCP port to connect to
 
 $mail->setFrom('cristiano@chiapadesign.com.br', 'RBC Global Business');
-$mail->addAddress('criskile@gmail.com', 'Cristiano');     // Add a recipient
+//$mail->addAddress('bruno.carvalho@rbcglobalbusiness.com', 'Bruno Carvalho');     // Add a recipient
+$mail->addAddress('criskile@gmail.com', 'Bruno Carvalho');     // Add a recipient
 $mail->addReplyTo(" ' " . $form_email . " ' ", " ' " . $form_nome. " ' ");
 // $mail->addCC('cc@example.com');
 // $mail->addBCC('bcc@example.com');

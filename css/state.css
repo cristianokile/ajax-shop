@@ -73,6 +73,13 @@
 
 /* XS - Resolução até 768px */
 @media screen and (max-width: 767px){
+    .divider{
+        display: none;
+    }
+    .btn-block-xs {
+        display: block;
+        width: 100%;
+    }
 	.text-center-xs{
 		text-align: center;	
 	}
@@ -124,6 +131,9 @@
     .footer-menu img{
         margin-bottom: 0px;
     } 
+    .form-material .group{
+        margin-bottom: 50px;
+    }
 }
 /* SM - Resolução até 992px */
 @media screen and (max-width: 991px){
@@ -223,17 +233,20 @@
     .navbar-custom .navbar-nav-main>li>a {
         color: #eeeeee;
     }
-    .navbar-custom .navbar-nav-main>li>a {
-        color: #eeeeee;
+    .navbar-custom .navbar-nav-main>li>a:focus {
+        color: #ef494f;
+        text-shadow: none;
     }
     .navbar-custom .navbar-nav-main>li>a:hover {
-        color: #ffffff;
+        color: #ef494f;
+        text-shadow: none;
     }
     .navbar-default .navbar-nav-main>.open>a,
     .navbar-default .navbar-nav-main>.open>a:focus,
     .navbar-default .navbar-nav-main>.open>a:hover{
         background: none;
         text-shadow: none;
+        color: #ffffff;
     }
     .navbar-default .navbar-nav-main>.open>a{
         color: red!important;
@@ -245,6 +258,9 @@
         min-height: 190px;
         display: table;
         margin: 0px 0.8em;
+    }
+    nav.nav-fullwidth div.col-md-4 {
+        min-height: 225px;
     }
     section.destaque-produtos div.container {
         position: absolute;

@@ -55,6 +55,8 @@ require('header.php');?>
 						$item->nome  		= $produtos->produto_nome;
 						$item->tamanho  	= $produtos->produto_tam;
 						$item->categoria  	= $produtos->produto_cat;
+						$item->categoria  	= $produtos->produto_subcat;
+						$item->categoria  	= $produtos->produto_type;
 						$item->qtde  		= $produtos->produto_qtde;
 						$item->preco  		= $produtos->produto_preco;
 						$item->num_item = 1;

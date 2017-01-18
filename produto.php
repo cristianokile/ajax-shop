@@ -70,13 +70,32 @@ require('header.php');
 						<div class="container">
 							<div class="bc-wrap">
 								<div class="content">
-									<a href="#">INÍCIO</a>
+
+								<?php 
+								include("controller/config.inc.php");  
+
+								if(isset($_GET['id'])) {
+								$produto = $_GET['id'];
+								$resultnavs = $mysqli_conn->query("SELECT * FROM products_list WHERE id = '" . $produto . "'"); 
+								$products_breadcrumb = "";
+								
+								while($row = $resultnavs->fetch_assoc()) { 
+								$products_breadcrumb .= <<<EOT
+									<a href="index.php">INÍCIO</a>
 									<span class="next">&rsaquo;</span>
-									<a href="#">DECORAÇÃO</a>
+									<span>{$row['product_cat']}</span>
 									<span class="next">&rsaquo;</span>
-									<a href="#">ARIAÚ</a>
+									<span>{$row['product_subcat']}</span>
 									<span class="next">&rsaquo;</span>
-									<span class="active">VASO DE CERÂMICA</span>
+									<span>{$row['product_type']}</span>
+									<span class="next">&rsaquo;</span>
+									<span class="active">
+										{$row['product_name']}
+									</span>
+EOT;
+	}
+	}
+	echo $products_breadcrumb; ?>
 								</div>
 							</div>
 						</div>
@@ -90,12 +109,10 @@ require('header.php');
 				<div class="row">
 
 				<?php 
-					include("controller/config.inc.php");  
-					
 					//List products from database
 					if(isset($_GET['id'])) {
 						$produto = $_GET['id'];
-						$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE id =" . $produto); ?>
+						$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE id =" . $produto); ?>
 							<?php $products_list = "";?>
 
 							<?php while($row = $results->fetch_assoc()) { 
@@ -109,7 +126,7 @@ require('header.php');
 											<div class="produto-imagem">
 												<img class="img-responsive center-block" src="{$row['product_image']}" alt="{$row['product_name']}" title="{$row['product_name']}">
 											</div>
-											<a class="fancybox-effects-a" href="{$row['product_image']}" title="{$row['product_name']}"></a>
+											<a class="fancybox-effects-a" href="{$row['product_image_hd']}" title="{$row['product_name']}"></a>
 											<h5 class="produto-info"><strong>Quantidade desejada:</strong></h5>
 											<div class="form-group form-group-options center-block">
 												<div id="{$row['id']}" class="input-group input-group-option quantity-wrapper">
@@ -127,6 +144,8 @@ require('header.php');
 											<input name="product_code" type="hidden" value="{$row['product_code']}">
 											<input name="product_size" type="hidden" value="{$row['product_size']}">
 											<input name="product_cat" type="hidden" value="{$row['product_cat']}">
+											<input name="product_subcat" type="hidden" value="{$row['product_subcat']}">
+											<input name="product_type" type="hidden" value="{$row['product_type']}">
 											<input name="product_image" type="hidden" value="{$row['product_image']}">
 											<input name="product_image_hd" type="hidden" value="{$row['product_image_hd']}">
 											<input name="product_price" type="hidden" value="{$row['product_price']}">

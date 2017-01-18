@@ -67,30 +67,30 @@
 					<?php require("controller/config.inc.php"); ?>
 					<div class="col-md-12">
 						<div class="row">
-							<?php $results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_image, product_image_hd, product_stock, product_price FROM products_list"); ?>
+							<?php $results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list"); ?>
 
 							<div class="col-md-12 text-center">
 								<h2>Ariaú</h2>
 							</div>
 							<?php $products_list = "";?>
-
+							<form class="form-item">
 							<?php while($row = $results->fetch_assoc()) { 
 								$products_list .= <<<EOT
-									<form class="form-item">
-										<article class="col-md-4 col-sm-6 col-xs-12">
+									
+										<article class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 											<div class="produto-imagem">
 												<img class="img-responsive" src="{$row['product_image']}" alt="{$row['product_name']}" title="{$row['product_name']}">
 											</div>
 											<h3 class="produto-codigo">{$row['product_code']}</h3>
 											<h4 class="produto-titulo">{$row['product_name']}</h4>
 											<h5 class="produto-info">{$row['product_size']}</h5>
-											<a class="btn" href="produto.php?id={$row['id']}" role="button">VER PRODUTO</a>
+											<a class="btn" href="produto.php?produto={$row['product_name']}&id={$row['id']}" role="button">VER PRODUTO</a>
 										</article>
-									</form>
+									
 EOT;
 	}
 	echo $products_list;
-?>
+?>							</form>
 						</div>
 					</div>
 				</div>

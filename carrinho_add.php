@@ -45,6 +45,8 @@
 				$product_code 		= $product["product_code"];
 				$product_size 		= $product["product_size"];
 				$product_cat 		= $product["product_cat"];
+				$product_subcat 	= $product["product_subcat"];
+				$product_type 		= $product["product_type"];
 				$product_image 		= $product["product_image"];
 				$product_image_hd	= $product["product_image_hd"];
 				$product_price 		= $product["product_price"];

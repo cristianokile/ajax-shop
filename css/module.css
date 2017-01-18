@@ -112,6 +112,9 @@ div.carousel-inner div.item h5{
 	text-shadow: none;
 	line-height: 80%;
 }
+.carousel-indicators{
+    bottom: 45px;
+}
 
 /* LISTA PRODUTOS */
 
@@ -139,7 +142,7 @@ section.carrinho h2:after{
 section.produtos article{
     text-align: center;
     margin: 25px 0;  
-    min-height: 300px;  
+    min-height: 480px;  
 }
 section.produtos article div.produto-imagem{ 
     width: 100%;
@@ -382,7 +385,7 @@ ul.products-wrp li .item-box button[disabled=disabled]{
     float: right;
     min-width: 50px!important;
     height: 30px!important;
-    background: rgba(219, 0, 33, 1) url(../images/cart-icon.png) no-repeat .6em 7px!important;
+    background: rgba(239,73,79, 1) url(../images/cart-icon.png) no-repeat .6em 7px!important;
     padding: 4px 8px 4px 8px!important;
     border-radius: 30px!important;
     color: #fff!important;
@@ -403,7 +406,7 @@ ul.products-wrp li .item-box button[disabled=disabled]{
     position: relative;
 }
 .cart-box:hover{
-    background: #FA1C5F url(../images/cart-icon.png) no-repeat 20px 5px;
+    background: #ef494f url(../images/cart-icon.png) no-repeat 20px 5px;
 }
 .shopping-cart-box{ 
     position: absolute;
@@ -515,6 +518,129 @@ hr{
     height: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Formulario Material Design */
+/* Form Material Design */
+
+.form-material .group{
+    position:relative;
+    margin-bottom: 25px;
+}
+
+.form-material input,
+.form-material textarea {
+    font-size:1.2em;
+    padding:5px 0;
+    display:block;
+    width:100%;
+    border:none;
+    border-bottom:1px solid #8b8d99;
+    border-radius: 0;
+}
+.form-material input{
+    margin-top: 5px;  
+}
+.form-material textarea {
+    margin-top: 5px;
+}
+.form-material input:focus,
+.form-material textarea:focus{
+    outline:none;
+}
+.form-material label{
+    color:#8b8d99;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:15px;
+    top:10px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+}
+.form-material textarea ~ label{
+    top:-20px;
+    color: #000000;
+}
+.form-material input:focus ~ label,
+input:focus ~ label, input:valid ~ label{
+    top:-20px;
+    left: 15px;
+    color: #000000;
+}
+.form-material textarea:focus ~ label,
+textarea:focus ~ label{
+    top:-20px;
+    font-size:14px;
+    color: #000000;  
+}
+/* active state */
+input:focus ~ label, input:valid ~ label{
+    top:-20px;
+    font-size:14px;
+    color: #000000;
+}
+.form-material textarea[value=""] ~ label{
+    top:0px;
+    left: 15px;
+    color: #8b8d99;
+}
+
+.form-material .bar{
+    position:relative;
+    display:block;
+    width:100%;
+}
+.form-material .bar:before, .bar:after {
+    content:'';
+    height:1px;
+    width:0;
+    bottom:1px;
+    position:absolute;
+    background:#8b8d99;
+    transition:0.3s ease all;
+    -moz-transition:0.3s ease all;
+    -webkit-transition:0.3s ease all;
+}
+.form-material .bar:before {
+    left:50%;
+}
+.form-material .bar:after {
+    right:50%;
+}
+.form-material input:focus ~ .bar:before,
+.form-material input:focus ~ .bar:after,
+.form-material textarea:focus ~ .bar:before,
+.form-material textarea:focus ~ .bar:after {
+    width:50%;
+}
+.form-material span.highlight {
+    position:absolute;
+    width:100px;
+    top:25%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+    color: #34ffc3;
+}
+.form-material input:focus ~ .highlight,
+.form-material textarea:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+@-webkit-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#5264AE; }
+    to { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#fff; }
+    to { width:0; background:transparent; }
 }
 
 

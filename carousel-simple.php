@@ -1,5 +1,5 @@
 <!-- Carousel -->
-<div class="carousel carousel-simple" id="carousel-735882">
+<div class="carousel carousel-simple hidden-xs" id="carousel-735882">
 	<div class="carousel-inner">
 	</div> 
 </div>

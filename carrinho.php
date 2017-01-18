@@ -72,9 +72,8 @@
 										<li class="lista-header">
 											<div class="row">
 												<div class="col-md-2 text-center">Imagem</div>
-												<div class="col-md-4">Descrição</div>
-												<div class="col-md-2 text-center">Categoria</div>
-												<div class="col-md-1 text-center">Estoque</div>
+												<div class="col-md-3">Descrição</div>
+												<div class="col-md-4 text-center">Categoria</div>
 												<div class="col-md-2 text-center">Quantidade Desejada</div>
 												<div class="col-md-1 text-center">Remover?</div>
 											</div>
@@ -92,6 +91,8 @@
 													$product_code 		= $product["product_code"];
 													$product_size 		= $product["product_size"];
 													$product_cat 		= $product["product_cat"];
+													$product_subcat 	= $product["product_subcat"];
+													$product_type 		= $product["product_type"];
 													$product_image 		= $product["product_image"];
 													$product_image_hd	= $product["product_image_hd"];
 													$product_price 		= $product["product_price"];
@@ -105,13 +106,13 @@
 															<div class='col-md-2 lista-foto text-center'>
 																<div class='out center-block'>
 																	<div class='in'>
-																		<a href='produto.php?id=" . $product_id . "'>
+																		<a href='produto.php?item=" . $product_name . "&id=" . $product_id . "'>
 																			<img class='img-responsive center-block' src='" . $product_image . "' alt='" . $product_name . "' title='" . $product_name . "'>
 																		</a>
 																	</div>
 																</div>
 															</div>
-														<div class='col-md-4 lista-descricao'>
+														<div class='col-md-3 lista-descricao'>
 															<div class='out'>
 																<div class='in'>
 																	<a href='produto.php?id=" . $product_id . "' title= ". $product_name . ">
@@ -121,18 +122,15 @@
 																</div>
 															</div>
 														</div>
-														<div class='col-md-2 lista-categoria text-center'>
+														<div class='col-md-4 lista-categoria text-center'>
 															<div class='out center-block'>
-																<div class='in'>
-																	" . $product_cat . "
-																</div>
-															</div>
-														</div>
-														<div class='col-md-1 lista-estoque text-center'>
-															<div class='out center-block'>
-																<div class='in'>
-																	" . $product_stock . "
-																</div>
+																<div class='in'>";
+													
+													$cart_box 	.= $product_cat;  
+													if (isset($product_subcat)) : $cart_box .=" &rsaquo; " . $product_subcat; endif;
+													if (isset($product_type)) : $cart_box .=" &rsaquo; " . $product_type; endif;
+																	
+													$cart_box 	.="</div>
 															</div>
 														</div>
 														<div class='col-md-2 lista-Itens'>
@@ -207,6 +205,8 @@
 											<input name="product_code" type="hidden" value="{$row['product_code']}">
 											<input name="product_size" type="hidden" value="{$row['product_size']}">
 											<input name="product_cat" type="hidden" value="{$row['product_cat']}">
+											<input name="product_subcat" type="hidden" value="{$row['product_subcat']}">
+											<input name="product_type" type="hidden" value="{$row['product_type']}">
 											<input name="product_image" type="hidden" value="{$row['product_image']}">
 											<input name="product_image_hd" type="hidden" value="{$row['product_image_hd']}">
 											<input name="product_price" type="hidden" value="{$row['product_price']}">

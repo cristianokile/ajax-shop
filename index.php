@@ -102,7 +102,7 @@
 													Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis distinctio libero deleniti recusandae harum corporis impedit.
 												</p>
 												<p>
-													<a class="btn btn btn-large" href="produtos-vasos-de-ceramica.htm">CONHEÇA TODA A LINHA</a>
+													<a class="btn btn btn-large btn-block-xs" href="produtos-vasos-de-ceramica.htm">CONHEÇA TODA A LINHA</a>
 												</p>
 											</div>
 											<div class="clearfix hidden"></div>
@@ -123,7 +123,7 @@
 													Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis distinctio libero deleniti recusandae harum corporis impedit.
 												</p>
 												<p>
-													<a class="btn btn btn-large" href="produtos-decoracao.htm">CONHEÇA TODA A LINHA</a>
+													<a class="btn btn btn-large btn-block-xs" href="produtos-decoracao.htm">CONHEÇA TODA A LINHA</a>
 												</p>
 												</div>
 										</div>
@@ -161,7 +161,7 @@
 			</div>
 		</section>
 
-		<section class="quem-somos">
+		<section class="quem-somos" id="secao-quem-somos">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
