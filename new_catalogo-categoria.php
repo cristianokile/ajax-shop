@@ -110,16 +110,20 @@ EOT;
 							if(isset($_GET['cat'])) {
 								$categoria = $_GET['cat'];
 								$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE product_cat = '" . $categoria . "'"); 
-							} elseif (isset($_GET['subcat'])) {
-								$categoria = $_GET['subcat'];
-								$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE product_subcat = '" . $categoria . "'"); 
-							} elseif (isset($_GET['cat'])) {
-								$categoria = $_GET['cat'];
-								$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE product_type = '" . $categoria . "'"); 
-							} else {
+									if($results->num_rows === 0){ 
+										$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE product_subcat = '" . $categoria . "'"); 
+										if($results->num_rows === 0){ 
+											$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE product_type = '" . $categoria . "'"); 
+										};
+									};
+							} else {	
 								$results = "";
 							}; ?>
 
+							<?php 
+							$categoria = $_GET['cat'];
+
+							$results = $mysqli_conn->query("SELECT id, product_name, product_code, product_size, product_cat, product_subcat, product_type, product_image, product_image_hd, product_stock, product_price FROM products_list WHERE product_type = '" . $categoria . "'"); ?>
 							<?php if($results->num_rows === 0){ ?>
 							<form class="form-item">
         						<article class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
