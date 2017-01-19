@@ -91,12 +91,12 @@
         -webkit-background-size: 100%;
         background-size: 100%;
         height: 70px;
-        width: 200px;
+        width: 145px;
         background-position: center center;
         background-repeat: no-repeat;
         color: #444;
         line-height: 1.3em;
-        margin: 10px;
+        margin: 10px 0;
         padding: 0;
         text-decoration: none;
         text-indent: -9999px;
@@ -133,6 +133,70 @@
     } 
     .form-material .group{
         margin-bottom: 50px;
+    }
+    a.dropdown-toggle,
+    a.dropdown-toggle h4{
+        font-size: 16px;
+        font-family: 'Poppins-Light';
+    }
+    a.dropdown-toggle h4{
+        text-transform: uppercase;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a{
+        font-size: 16px;
+    }
+    .carrinho-icon{
+        position: absolute;
+        right: 25vw;
+        top: 2.1em;
+        z-index: 9999;
+    }
+    .shopping-cart-box {
+        position: absolute;
+        right: -100%;
+        top: 3em;
+        width: 90vw;
+    }
+    .shopping-cart-box:after {
+        right: 33%;
+    }
+    ul.lista-carrinho li.lista-body div.out {
+        height: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+    }
+    ul.lista-carrinho li.lista-body a p,
+    div.lista-descricao a p{
+        font-size: 6vw;
+        color: #ef494f;
+        line-height: 121%;
+        margin: 15px 0;
+    }
+    section.breadcrumb {
+        padding: 0px;
+        margin: 25px 0;
+        text-align: left;
+    }
+    section.breadcrumb a, section.breadcrumb span {
+        font-size: 13px;
+    }
+    ul.lista-carrinho li.lista-body div.out, div.out {
+        width: 100%;
+        text-align: center;
+    }
+    ul.lista-carrinho li.lista-body div.out, div.out {
+        height: 70px;
+    }
+    .shopping-cart-box .remove-item {
+        float: none;
+    }
+    .shopping-cart-box a {
+        display: block;
+    }
+    #shopping-cart-results ul {
+        max-height: 500px;
     }
 }
 /* SM - Resolução até 992px */
@@ -250,6 +314,10 @@
     }
     .navbar-default .navbar-nav-main>.open>a{
         color: red!important;
+    }
+    .cart-box {
+        margin-top: 80px;
+        position: relative!important;
     }
 }
 /* MD - Resolução a partir de 993px */

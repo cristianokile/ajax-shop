@@ -69,3 +69,12 @@ nav.nav-fullwidth a.listar-produtos span.more{
   margin-left: 15px;
   line-height: 60%;
 }
+
+.dropdown-menu h4{
+  font-family: 'Poppins-Light';
+  font-size: 16px;
+}
+
+ul.dropdown-menu li{
+  margin-left: 15px;
+}

@@ -34,6 +34,10 @@ dd{
 .color-red{
     color: #ef494f;
 }
+a.dropdown-toggle h4{
+    font-family: 'Poppins-Light';
+    font-size: 16px;
+}
 
 /* --- HEADER --- */
 

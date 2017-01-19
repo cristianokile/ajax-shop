@@ -66,16 +66,17 @@
 					
 					<article class="col-md-12 col-sm-12 col-xs-12">
 						<div class="row">
-							<div class="col-md-12 hidden-xs hidden-sm">
+							<div class="col-md-12">
 								<form class="row" method="POST" action="fechar-pedido.php">
 									<ul class="col-md-12 lista-carrinho" id="orcamento">
 										<li class="lista-header">
 											<div class="row">
-												<div class="col-md-2 text-center">Imagem</div>
-												<div class="col-md-3">Descrição</div>
-												<div class="col-md-4 text-center">Categoria</div>
-												<div class="col-md-2 text-center">Quantidade Desejada</div>
-												<div class="col-md-1 text-center">Remover?</div>
+												<div class="col-md-2 text-center hidden-xs">Imagem</div>
+												<div class="col-md-3 hidden-xs">Descrição</div>
+												<div class="col-md-4 text-center hidden-xs">Categoria</div>
+												<div class="col-md-2 text-center hidden-xs">Quantidade Desejada</div>
+												<div class="col-md-1 text-center hidden-xs">Remover?</div>
+												<div class="col-xs-12 text-center visible-xs">Produtos Solicitados</div>
 											</div>
 										</li>
 
@@ -181,25 +182,34 @@
 										</li>
 										<li class="row lista-body">
 											<div class="col-md-12">
-												<div class="row">
-													<div class="form-group col-md-4">
-														<label for="exampleInputName2">Nome</label>
-														<input type="text" class="form-control" id="exampleInputName2" name="cliente_nome" placeholder="Nome">
+												<div class="form-material row">
+													<div class="group col-md-4">
+														<input type="text" name="cliente_nome" required>
+														<span class="highlight"></span>
+														<span class="bar"></span>
+														<label>Nome</label>
 													</div>
-													<div class="form-group col-md-4">
-														<label for="exampleInputEmail2">Email</label>
-														<input type="email" class="form-control" id="exampleInputEmail2" name="cliente_email" placeholder="seu@email.com.br" required>
+													<div class="group col-md-4">
+														<input type="text" name="cliente_email" required>
+														<span class="highlight"></span>
+														<span class="bar"></span>
+														<label>E-mail</label>
 													</div>
-													<div class="form-group col-md-4">
-														<label for="exampleInputEmail2">Telefone</label>
-														<input type="text" class="form-control telefone" id="exampleInputTell2" name="cliente_tel" placeholder="11 0000-0000">
+													<div class="group col-md-4">
+														<input class="telefone" type="tel" id="exampleInputTell2" name="cliente_tel" placeholder="" required>
+														<span class="highlight"></span>
+														<span class="bar"></span>
+														<label>Telefone</label>
 													</div>
 												</div>
 											</div>
 										</li>
 									</ul>
 									<div class="col-md-12 text-right">
-										<a class="btn btn-padrao btn-default pull-left" href="catalogo.php">Voltar para o Catálogo</a>
+										<div class="row">
+											<div class="col-md-3 col-xs-6">
+												<a class="btn btn-padrao btn-default pull-left" href="catalogo.php">Voltar para o Catálogo</a>		
+											</div>
 											<input name="id" type="hidden" value="{$row['id']}">
 											<input name="product_name" type="hidden" value="{$row['product_name']}">
 											<input name="product_code" type="hidden" value="{$row['product_code']}">
@@ -212,7 +222,10 @@
 											<input name="product_price" type="hidden" value="{$row['product_price']}">
 											<input name="product_stock" type="hidden" value="{$row['product_stock']}">
 											<input name="product_qtde" type="hidden" value="{$row['product_stock']}">
-											<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>
+											<div class="col-md-3 col-xs-6 pull-right">
+												<input class="btn btn-default" type="submit" value="Enviar Orçamento"/>		
+											</div>
+										</div>
 										<br><br><br>
 									</div>
 								</form>

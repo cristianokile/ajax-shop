@@ -62,10 +62,11 @@
 						include("controller/config.inc.php");
 						setlocale(LC_MONETARY,"pt_BR"); 
 					?>
-					<h2>Contato</h2>
-					<p class='text-center'>Caso tenha alguma dúvida, entre em contato<br>
+					<div class="col-md-12">
+						<h2>Contato</h2>
+						<p class='text-center'>Caso tenha alguma dúvida, entre em contato<br class="hidden-xs">
 					conosco preenchendo o formulário abaixo:</p>
-					
+					</div>
 					<article class="col-md-12 col-sm-12 col-xs-12">
 						<div class="row">
 							<div class="col-md-offset-2 col-md-8">
@@ -77,7 +78,7 @@
 										<label>Nome</label>
 									</div>
 									<div class="group col-md-6">
-										<input type="tel" name="contato-nome" required>
+										<input class="telefone" type="tel" id="exampleInputTell2" name="contato-nome" placeholder="" required>
 										<span class="highlight"></span>
 										<span class="bar"></span>
 										<label>Telefone</label>
@@ -114,22 +115,22 @@
 
 		<?php require('footer.php') ?>
 		<script>
-			    //Máscara de Telefone
-			    $("input.telefone"){
-			        .mask("(99) 9999-9999?9")
-			        .focusout(function (event) {  
-			            var target, phone, element;  
-			            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
-			            phone = target.value.replace(/\D/g, '');
-			            element = $(target);  
-			            element.unmask();  
-			            if(phone.length > 10) {  
-			                element.mask("(99) 99999-999?9");  
-			            } else {  
-			                element.mask("(99) 9999-9999?9");  
-			            }  
-			        });
-				};
+			$(document).ready(function(){
+			    $("input.telefone")
+			    .mask("(99) 9999-9999?9")
+			    .focusout(function (event) {  
+			    	var target, phone, element;  
+			    	target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+			    	phone = target.value.replace(/\D/g, '');
+			    	element = $(target);  
+			    	element.unmask();  
+			    	if(phone.length > 10) {  
+			    		element.mask("(99) 99999-999?9");  
+			    	} else {  
+			    		element.mask("(99) 9999-9999?9");  
+			    	}  
+			    });
+			});
 		</script>
 	</body>
 </html>

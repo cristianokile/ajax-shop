@@ -6,7 +6,6 @@ require('header.php');
 ?>	
 <script type="text/javascript" src="js/fancy-js/jquery.fancybox.js"></script>
 <link rel="stylesheet" type="text/css" href="css/fancy-css/jquery.fancybox.css" media="screen" />
-<link href="style/style.css" rel="stylesheet" type="text/css">	
 <script>
 			$(document).ready(function(){	
 				$(".form-item").submit(function(e){
@@ -64,13 +63,11 @@ require('header.php');
 		</header>
 		<div class="container divider"></div>
 		<section class="breadcrumb">
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<nav>
-						<div class="container">
-							<div class="bc-wrap">
-								<div class="content">
-
+			<div class="container">
+				<div class="row">
+					<nav class="col-md-12">
+						<div class="bc-wrap row">
+							<div class="content col-md-12">
 								<?php 
 								include("controller/config.inc.php");  
 
@@ -93,15 +90,14 @@ require('header.php');
 										{$row['product_name']}
 									</span>
 EOT;
-	}
-	}
-	echo $products_breadcrumb; ?>
-								</div>
+									}
+								}
+								echo $products_breadcrumb; ?>
 							</div>
 						</div>
 					</nav>
 				</div>
-			</div>
+			</div><!-- /container -->
 		</section>
 
 		<section class="produto" id="produto-01">

@@ -24,9 +24,9 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
 	<link rel="manifest" href="img/favicon/manifest.json">
-	<meta name="msapplication-TileColor" content="#88C1CA">
+	<meta name="msapplication-TileColor" content="#E56A56">
 	<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#88C1CA">
+	<meta name="theme-color" content="#E56A56">
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
